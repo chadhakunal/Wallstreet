@@ -1,38 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="146e891e-7e26-4af1-b6d1-53af262a759b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Wallstreet.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/R_User_Library.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Wallstreet/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Wallstreet/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Wallstreet/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Wallstreet/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/migrations/0002_auto_20190220_1643.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/migrations/0003_auto_20190220_1742.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/migrations/0004_auto_20190224_0618.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/migrations/0005_auto_20190610_1321.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/migrations/0006_remove_company_tabletype.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/utility.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bazaar/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/updateData.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ws.csv" afterDir="false" />
-    </list>
+    <list default="true" id="146e891e-7e26-4af1-b6d1-53af262a759b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +220,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49795082" visible="true" weight="0.17583893" />
