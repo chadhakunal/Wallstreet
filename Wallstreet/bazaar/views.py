@@ -8,9 +8,11 @@ from .models import *
 
 
 def shift(Table, starting, ending):
+    # Shift a companies buy table and sell table entries up/down
     if ending - starting > 0:
         # Down Shift
         for i in range(ending, starting - 1, -1):
+            # Start from last object to entry object, shift each entry down( -1 )
             t = Table.objects.get(pk=i)
             temp = t
             t.pk = t.pk + 1
@@ -18,7 +20,8 @@ def shift(Table, starting, ending):
             temp.delete()
     elif ending - starting < 0:
         # Up shift
-        for i in range(ending, starting + 1):      # Changed !!!
+        for i in range(ending, starting + 1):  # Changed !!!
+            #here ending < starting
             t = Table.objects.get(pk=i)
             temp = t
             t.pk = t.pk - 1
@@ -29,8 +32,9 @@ def shift(Table, starting, ending):
 def insertFirst(Table, bidPrice, noShares, company, user, startIndex, endIndex):
     """
         Function: This function will be called when we want to insert the entry at the top in the table
-        Use-cases: 1. If the new-buyentry is having highest buyprice than the current top entry
-                   2. If the new-sellentry is having highest sellprice than the current top entry
+        Use-cases: 1. If the new-buyEntry is having highest buyPrice than the current top entry
+                   2. If the new-sellEntry is having highest sellPrice than the current top entry
+                   - Used when nothing can be matched
         Algorithm:
             1. check whether the starting entry in the table exists at the base location of table or not
             2. If the index does not match (means there is free space at top of the table):
@@ -120,7 +124,6 @@ def insertMiddle(Table, bidPrice, noShares, company, user, startIndex, endIndex,
 
 
 def matchBuy(company, user, buyPrice, noShares):
-
     buyTable = BuyTable
     sellTable = SellTable
 
