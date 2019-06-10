@@ -120,21 +120,9 @@ def insertMiddle(Table, bidPrice, noShares, company, user, startIndex, endIndex,
 
 
 def matchBuy(company, user, buyPrice, noShares):
-    if company.tableType == 1:
-        buyTable = BuyTableType1
-        sellTable = SellTableType1
-    elif company.tableType == 2:
-        buyTable = BuyTableType2
-        sellTable = SellTableType2
-    elif company.tableType == 3:
-        buyTable = BuyTableType3
-        sellTable = SellTableType3
-    elif company.tableType == 4:
-        buyTable = BuyTableType4
-        sellTable = SellTableType4
-    else:
-        buyTable = BuyTableType5
-        sellTable = SellTableType5
+
+    buyTable = BuyTable
+    sellTable = SellTable
 
     # Get all the indexes of the table startindex, endindex
     buyStartIndex = company.buyStartPointer
