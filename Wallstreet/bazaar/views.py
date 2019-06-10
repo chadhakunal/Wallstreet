@@ -27,6 +27,24 @@ def shift(Table, starting, ending):
 
 
 def insertFirst(Table, bidPrice, noShares, company, user, startIndex, endIndex):
+    """
+        Function: This function will be called when we want to insert the entry at the top in the table
+        Use-cases: 1. If the new-buyentry is having highest buyprice than the current top entry
+                   2. If the new-sellentry is having highest sellprice than the current top entry
+        Algorithm:
+            1. check whether the starting entry in the table exists at the base location of table or not
+            2. If the index does not match (means there is free space at top of the table):
+                2.1. Directly add the new entry above the current startindex of the table
+            3. Otherwise:
+                3.1. Check if table is full (by checking the difference in the startindex and endindex):
+                    3.1.i. If the table is full:
+                        3.1.i.a. eliminate last user and do its processing
+                        3.1.i.b. shift all the entries down by 1
+                        3.1.i.c. create the new entry at the startindex
+                    3.1.ii. Else:
+                        3.1.ii.a. shift all entries down by 1
+                        3.1.ii.b. create the new entry at the startindex
+    """
     if startIndex != company.basePointer:
         Table.objects.create(pk=startIndex - 1, company=company, profile=user,
                              bidShares=noShares,
@@ -46,6 +64,31 @@ def insertFirst(Table, bidPrice, noShares, company, user, startIndex, endIndex):
 
 
 def insertMiddle(Table, bidPrice, noShares, company, user, startIndex, endIndex, position):
+    """
+        Function: This function will be used to add the entry in the middle of the table
+        Algorithm:
+            1. calculate the midindex of the table associated with company
+            2. if the position at which new entry to be inserted is greater than midindex:
+                2.1. Check if the table is not full:
+                    # Means last position is entry
+                    2.1.i. shift the entries from the position down by 1
+                2.2. else if starting entries are empty:
+                    2.2.i. shift the entries from start to the position up by 1
+                2.3. otherwise:
+                    # Means table is full
+                    2.3.i. eliminate last user and do user processing
+                    2.3.ii. shift the entries from position down by 1
+            3. if the position lies above the midindex:
+                3.1. if starting entries are empty:
+                    3.1.i. shift the entries from start to position up by 1
+                3.2. if the starting entries are full:
+                    3.2.ii. shift the entries from position down by 1
+                3.3 otherwise:
+                    # Means table is full
+                    3.3.i. eliminate last user and do user processing
+                    3.3ii. shift the entries from position down by 1
+            4. Now the position is free, add the new entry at that position
+    """
     midIndex = (startIndex + endIndex) / 2
     if position > midIndex:
         if endIndex != company.basePointer + 99:
@@ -64,10 +107,10 @@ def insertMiddle(Table, bidPrice, noShares, company, user, startIndex, endIndex,
             # If Position lies in Upper Part and Starting Positions are free then Shift Up
             shift(Table, position, startIndex)
         elif endIndex != company.basePointer + 99:
-            # If Position lies in Upper Part but Starting Positions are Full and Ending Positions are free then Shift Down
+            # If Position lies in Upper Part but Starting Positions are Full & Ending Positions are free then Shift Down
             shift(Table, position, endIndex)
         else:
-            # If Position lies in Upper Part adn table is Full then Delete Last Entry and Shift Down
+            # If Position lies in Upper Part and table is Full then Delete Last Entry and Shift Down
             # Eliminate Last, User Processing Left
             shift(Table, position, endIndex)
 
@@ -77,72 +120,57 @@ def insertMiddle(Table, bidPrice, noShares, company, user, startIndex, endIndex,
 
 
 def matchBuy(company, user, buyPrice, noShares):
-    if company.tableType == 1:
-        buyTable = BuyTableType1
-        sellTable = SellTableType1
-    elif company.tableType == 2:
-        buyTable = BuyTableType2
-        sellTable = SellTableType2
-    elif company.tableType == 3:
-        buyTable = BuyTableType3
-        sellTable = SellTableType3
-    elif company.tableType == 4:
-        buyTable = BuyTableType4
-        sellTable = SellTableType4
-    else:
-        buyTable = BuyTableType5
-        sellTable = SellTableType5
 
+    buyTable = BuyTable
+    sellTable = SellTable
+
+    # Get all the indexes of the table startindex, endindex
     buyStartIndex = company.buyStartPointer
     buyEndIndex = company.buyEndPointer
     sellStartIndex = company.sellStartPointer
     sellEndIndex = company.sellEndPointer
 
     try:
+        # Getting the entries at start position, end position in the table
         startValue = buyTable.objects.get(pk=buyStartIndex)
         endValue = buyTable.objects.get(pk=buyEndIndex)
         mid = int((buyStartIndex + buyEndIndex) / 2)
 
+        # If the new-buyprice is greater than old top entry
         if buyPrice > startValue.bidPrice:
             # Highest Bid, hence matching
+
+            # Get the sellbid at top in selltable
             sellBid = sellTable.objects.get(pk=sellStartIndex)
+
+            # If the new-shares are less than total sellshares then process only new-shares and
+            # keep selltable entry as it is by reducing sellshares
             if noShares < sellBid.sellShares:
                 # User Processing Remaining
                 sellBid.sellShares -= noShares
                 sellBid.save()
 
+            # If new-shares are more then remove entry from sell table and add user in buy table at top with
+            # remaining shares
             if noShares > sellBid.sellShares:
                 # User Processing Remaining
                 insertFirst(buyTable, buyPrice, noShares - sellBid.sellShares, company, user, buyStartIndex,
                             buyEndIndex)
 
+            # If the new-shares by user matches with the sellshares of company them remove the selltable entry and
+            # process user transaction
+            else:
+                # remove sell table entry
+                # user transaction
+                pass
 
+        # If the new-buyprice entry is less than least buyprice in table
 
     except:
+        # If no entry exist then create one at startindex
         buyTable.objects.create(pk=buyStartIndex, company=company, profile=user, bidShares=noShares, bidPrice=buyPrice)
 
 
 class index(View):
     def get(self, request):
         return HttpResponse("<h1>Test</h1>")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
