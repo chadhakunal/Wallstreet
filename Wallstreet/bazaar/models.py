@@ -24,6 +24,7 @@ class Profile(models.Model):
 class Company(models.Model):
     # Table to store all the company data
     name = models.CharField(max_length=25)  # Name of the company
+    tempName = models.CharField(max_length=25)
     sharePrice = models.IntegerField(default=0)  # Company's share price
     totalNoOfShares = models.IntegerField(default=0)  # Total number of shares available for sale
     sharesLeft = models.IntegerField(default=0)  # Number of shares left  ########(Redundant?)ny.objects.all()
@@ -89,3 +90,22 @@ class Global(models.Model):
 
 class LeaderBoard(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+
+for i in Company.objects.all():
+    exec("""
+class BuyTable_""" + i.tempName.replace(" ", "_") + """(models.Model):
+    # Table to store buy requests
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)  # Company
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)  # User
+    bidPrice = models.IntegerField(default=0)  # Buy Price
+    bidShares = models.IntegerField(default=0)  # Number of shares
+
+class SellTable_""" + i.tempName.replace(" ", "_") + """(models.Model):
+    # Table to store sell requests
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)  # Company
+    proile = models.ForeignKey(Profile, on_delete=models.CASCADE)  # User
+    bidPrice = models.IntegerField(default=0)  # Sell Price
+    bidShares = models.IntegerField(default=0)  # Number of shares
+
+    """)

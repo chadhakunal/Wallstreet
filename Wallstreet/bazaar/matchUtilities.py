@@ -30,7 +30,7 @@ def MatchBuy(company, user, buyPrice, noShares):
                 sellBid.sellShares -= noShares
                 sellBid.save()
 
-            # If new-shares are more then remove entry from sell table and add user in buy table at top with
+            # If new-shares are more, then remove entry from sell table and add user in buy table at top with
             # remaining shares
             if noShares > sellBid.sellShares:
                 # User Processing Remaining
