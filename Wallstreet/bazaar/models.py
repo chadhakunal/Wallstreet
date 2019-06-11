@@ -96,14 +96,14 @@ for i in Company.objects.all():
     exec("""
 class BuyTable_""" + i.tempName.replace(" ", "_") + """(models.Model):
     # Table to store buy requests
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)  # Company
+    company = models.IntegerField(default="""+str(i.pk)+""")  # Company
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)  # User
     bidPrice = models.IntegerField(default=0)  # Buy Price
     bidShares = models.IntegerField(default=0)  # Number of shares
 
 class SellTable_""" + i.tempName.replace(" ", "_") + """(models.Model):
     # Table to store sell requests
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)  # Company
+    company = models.IntegerField(default="""+str(i.pk)+""")  # Company
     proile = models.ForeignKey(Profile, on_delete=models.CASCADE)  # User
     bidPrice = models.IntegerField(default=0)  # Sell Price
     bidShares = models.IntegerField(default=0)  # Number of shares
