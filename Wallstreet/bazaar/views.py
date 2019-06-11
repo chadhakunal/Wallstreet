@@ -123,9 +123,30 @@ def insertMiddle(Table, bidPrice, noShares, company, user, startIndex, endIndex,
                          bidPrice=bidPrice)
 
 
+def insertLast(Table, bidPrice, noShares, company, user, startIndex, endIndex):
+    """
+        Function: This function will be used to add the entry in the last of the table
+        Algorithm:
+            1. Check if the last entries are empty:
+                1.1. Insert the new entry at endIndex + 1 position
+            2. Otherwise:
+                2.1. If the starting positions are free:
+                    2.1.i. Shift the entries from start to end up by 1
+                    2.1.ii. Insert the new entry at the endIndex
+    """
+    if endIndex != company.basePointer + 99:
+        Table.objects.create(pk=endIndex + 1, company=company, profile=user,
+                             bidShares=noShares,
+                             bidPrice=bidPrice)
+    else:
+        if startIndex != company.basePointer:
+            shift(Table, endIndex, startIndex)
+            Table.objects.create(pk=endIndex, company=company, profile=user,
+                                 bidShares=noShares,
+                                 bidPrice=bidPrice)
+
+
 def matchBuy(company, user, buyPrice, noShares):
-    buyTable = BuyTable
-    sellTable = SellTable
 
     # Get all the indexes of the table startindex, endindex
     buyStartIndex = company.buyStartPointer
@@ -135,8 +156,8 @@ def matchBuy(company, user, buyPrice, noShares):
 
     try:
         # Getting the entries at start position, end position in the table
-        startValue = buyTable.objects.get(pk=buyStartIndex)
-        endValue = buyTable.objects.get(pk=buyEndIndex)
+        startValue = BuyTable.objects.get(pk=buyStartIndex)
+        endValue = BuyTable.objects.get(pk=buyEndIndex)
         mid = int((buyStartIndex + buyEndIndex) / 2)
 
         # If the new-buyprice is greater than old top entry
@@ -144,7 +165,7 @@ def matchBuy(company, user, buyPrice, noShares):
             # Highest Bid, hence matching
 
             # Get the sellbid at top in selltable
-            sellBid = sellTable.objects.get(pk=sellStartIndex)
+            sellBid = SellTable.objects.get(pk=sellStartIndex)
 
             # If the new-shares are less than total sellshares then process only new-shares and
             # keep selltable entry as it is by reducing sellshares
@@ -157,21 +178,16 @@ def matchBuy(company, user, buyPrice, noShares):
             # remaining shares
             if noShares > sellBid.sellShares:
                 # User Processing Remaining
-                insertFirst(buyTable, buyPrice, noShares - sellBid.sellShares, company, user, buyStartIndex,
+                # Apply for loop here for eliminating all possible shares
+                insertFirst(BuyTable, buyPrice, noShares - sellBid.sellShares, company, user, buyStartIndex,
                             buyEndIndex)
 
-            # If the new-shares by user matches with the sellshares of company them remove the selltable entry and
-            # process user transaction
-            else:
-                # remove sell table entry
-                # user transaction
-                pass
 
         # If the new-buyprice entry is less than least buyprice in table
 
     except:
         # If no entry exist then create one at startindex
-        buyTable.objects.create(pk=buyStartIndex, company=company, profile=user, bidShares=noShares, bidPrice=buyPrice)
+        BuyTable.objects.create(pk=buyStartIndex, company=company, profile=user, bidShares=noShares, bidPrice=buyPrice)
 
 
 class index(View):
