@@ -18,7 +18,7 @@ def setPointers(n):
 
 def setCompanyTempName():
     for i in Company.objects.all():
-        i.tempName = i.name
+        i.tempName = ''.join(filter(str.isalnum,i.name))
         i.save()
 
     print("Temp Name Set!")
