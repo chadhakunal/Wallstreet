@@ -13,9 +13,8 @@ class Profile(models.Model):
     rank = models.IntegerField(default=-1)  # Rank of the user
     numberOfShares = models.IntegerField(default=0)  # Number of shares owned by the user
     cash = models.IntegerField(default=380000)  # Cash remaining
-    netWorth = models.IntegerField(
-        default=0)  # Users networth; Required for leaderboard; Calculated using cash and number of shares
-    numberOfCompanies = models.IntegerField(default=0)  ########################################################
+    netWorth = models.IntegerField(default=0)  # Users networth; Required for leaderboard;
+                                               # Calculated using cash and number of shares
 
     def __str__(self):
         return self.user.username
@@ -28,12 +27,6 @@ class Company(models.Model):
     sharePrice = models.IntegerField(default=0)  # Company's share price
     totalNoOfShares = models.IntegerField(default=0)  # Total number of shares available for sale
     sharesLeft = models.IntegerField(default=0)  # Number of shares left  ########(Redundant?)ny.objects.all()
-
-    # buyStartPointer = models.IntegerField(default=0)  # Start Location of company in buy table
-    # buyEndPointer = models.IntegerField(default=0)  # End location of comapany in buy table
-    # sellStartPointer = models.IntegerField(default=0)  # Start Location of company in sell table
-    # sellEndPointer = models.IntegerField(default=0)  # End Location of company in sell table
-    # basePointer = models.IntegerField(default=0)  # Base location in buy and sell table ;Required since start pointer can move down
 
     def __str__(self):
         return self.name
