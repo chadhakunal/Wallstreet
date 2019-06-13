@@ -37,7 +37,6 @@ class UserShareTable(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)  # User
     company = models.ForeignKey(Company, on_delete=models.CASCADE)  # Company
     bidShares = models.IntegerField(default=0)  # Number of Shares owned
-    bidPrice = models.IntegerField(default=0)  # Price at which the shares were bought
 
 
 class UserHistory(models.Model):
