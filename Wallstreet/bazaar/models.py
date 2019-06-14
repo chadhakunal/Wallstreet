@@ -67,7 +67,6 @@ class SellTable(models.Model):
 
 class News(models.Model):
     # Table to store news
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
 
