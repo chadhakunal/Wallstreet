@@ -107,10 +107,9 @@
                             <div class="select">
                               <label class="form-control-label text-uppercase">Company</label>
                               <select name="account" class="form-control" style="width: 100%">
-                                <option>option 1</option>
-                                <option>option 2</option>
-                                <option>option 3</option>
-                                <option>option 4</option>
+                                {% for company in companies %}
+                                <option>{{ comapny.name }}</option>
+                                {% endfor %}
                               </select>
                             </div>
 

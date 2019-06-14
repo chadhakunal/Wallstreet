@@ -76,15 +76,26 @@ class CompanyView(View):
 class Buy(View):
     template = 'bazaar/buy.html'
 
+    # ToDo: Add validations in frontend
     def get(self, request):
-        return render(request, self.template, {})
+        companies = Company.objects.all()
+        return render(request, self.template, {'companies': companies})
 
 
 class Sell(View):
     template = 'bazaar/sell.html'
 
+    # ToDo: Add validations in frontend
     def get(self, request):
-        return render(request, self.template, {})
+        companies = []
+        user = User.objects.get(username=request.user)
+        userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
+        print(len(userShares))
+        for entry in userShares:
+            if entry.company not in companies:
+                companies.append(entry.company)
+        return render(request, self.template, {'companies': companies})
+
 
 
 class News(View):
