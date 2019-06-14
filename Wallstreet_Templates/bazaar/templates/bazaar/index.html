@@ -1,0 +1,380 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Welcome to Wallstreet!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="{% static 'bazaar/vendor/bootstrap/css/bootstrap.min.css'%}">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Google fonts - Popppins for copy-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
+    <!-- orion icons-->
+    <link rel="stylesheet" href="{% static 'bazaar/css/orionicons.css'%}">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{% static 'bazaar/css/style.default.css'%}" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{% static 'bazaar/css/custom.css'%}">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="{% static 'bazaar/img/favicon.png?3'%}">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+
+        <style type="text/css">
+        	.page-holder{
+        		background: url('{% static 'bazaar/img/1.png'%}');
+
+        		background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+        	}
+
+        	.card{
+        		background-color: rgba(255,255,255,0.1);
+        	}
+
+        	.text-grayp{
+        		color: white;
+        		font-size: 1.1rem;
+        	}
+
+
+        	.c-container {
+			  position: relative;
+			  width: 200px;
+			  .c-text {
+			    position: absolute;
+			    width: 100%;
+			    text-align: center;
+			    color: white;
+			    font-size: 30px;
+			    line-height: 30px;
+			    top: 50%;
+			    margin-top: -15px;
+			  }
+			  svg {
+			    width: 100%;
+			  }
+			}
+
+@import "compass/css3";
+
+.wrapper {
+  position: relative;
+  margin: 40px auto;
+  background: white;
+}
+
+@mixin timer($item, $duration, $size, $color, $border, $hover: running) {
+  #{$item}, #{$item} * { @include box-sizing(border-box); }
+
+  #{$item} {
+    width: $size;
+    height: $size;
+  }
+
+  #{$item} .pie {
+    width: 50%;
+    height: 100%;
+    transform-origin: 100% 50%;
+    position: absolute;
+    background: $color;
+    border: #{$border};
+  }
+
+  #{$item} .spinner {
+    border-radius: 100% 0 0 100% / 50% 0 0 50%;
+    z-index: 200;
+    border-right: none;
+    animation: rota $duration + s linear infinite;
+  }
+
+  #{$item}:hover .spinner,
+  #{$item}:hover .filler,
+  #{$item}:hover .mask {
+    animation-play-state: $hover;
+  }
+
+  #{$item} .filler {
+    border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+    left: 50%;
+    opacity: 0;
+    z-index: 100;
+    animation: opa $duration + s steps(1,end) infinite reverse;
+    border-left: none;
+  }
+
+  #{$item} .mask {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    background: inherit;
+    opacity: 1;
+    z-index: 300;
+    animation: opa $duration + s steps(1,end) infinite;
+  }
+
+  @keyframes rota {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes opa {
+    0% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+}
+
+@include timer('.wrapper', 5, 250px, #08C, '5px solid rgba(0,0,0,0.5)');
+
+
+        </style>
+  </head>
+  <body>
+    <!-- navbar-->
+    <header class="header">
+      <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow"><a href="#" class="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead"><i class="fas fa-align-left"></i></a><a href="#" class="navbar-brand font-weight-bold text-uppercase text-base">Wallstreet</a>
+        <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
+
+          <li class="nav-item dropdown mr-3"><a id="notifications" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-gray-400 px-1"><i class="fa fa-bell"></i><span class="notification-icon"></span></a>
+            <div aria-labelledby="notifications" class="dropdown-menu"><a href="#" class="dropdown-item">
+                <div class="d-flex align-items-center">
+                  <div class="icon icon-sm bg-violet text-white"><i class="fab fa-twitter"></i></div>
+                  <div class="text ml-2">
+                    <p class="mb-0">Sensex</p>
+                  </div>
+                </div></a>
+                <a href="#" class="dropdown-item">
+                <div class="d-flex align-items-center">
+                  <div class="icon icon-sm bg-green text-white"><i class="fas fa-envelope"></i></div>
+                  <div class="text ml-2">
+                    <p class="mb-0">Latest News</p>
+                  </div>
+                </div></a>
+              <div class="dropdown-divider"></div><a href="#" class="dropdown-item text-center"><small class="font-weight-bold headings-font-family text-uppercase">View News</small></a>
+            </div>
+          </li>
+          <li class="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img src="img/avatar-6.jpg" alt="Jason Doe" style="max-width: 2.5rem;" class="img-fluid rounded-circle shadow"></a>
+            <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong class="d-block text-uppercase headings-font-family">Mark Stephen</strong><small>Valuation: </small></a>
+              <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Transaction History</a>
+              <div class="dropdown-divider"></div><a href="login.html" class="dropdown-item">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="d-flex align-items-stretch">
+      <div id="sidebar" class="sidebar py-3">
+        <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
+        <ul class="sidebar-menu list-unstyled">
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:index' %}" class="sidebar-link text-muted active"><i class="o-home-1 mr-3 text-gray"></i><span>Home</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:company' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Company Info</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:buy' %}" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Buy</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:sell' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Sell</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:news' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>News</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:transactions' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Transactions</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:leaderboard' %}" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>Leaderboard</span></a></li>
+
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:logoff'%}" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>Logout</span></a></li>
+        </ul>
+
+      </div>
+      <div class="page-holder w-100 d-flex flex-wrap">
+
+        <div class="container-fluid px-xl-5">
+
+          <section class="py-5">
+            <div class="row mb-4 d-flex align-items-center">
+               <div class="col-lg-5 mb-4 mb-lg-0 pl-lg-0">
+
+
+
+
+
+
+              </div>
+              <div class="col-lg-12 mb-4 mb-lg-0">
+                <div class="card">
+                  <div class="card-header">
+                    <h2 class="h6 text-uppercase mb-0">Rules</h2>
+                  </div>
+                  <div class="card-body">
+                    <p class="text-gray text-grayp">Each participant will be provided with a unique Login ID and password to log on the Wall Street Webite and start playing.
+                  He/she is expected to buy the shares using this cash amount.</p>
+                    <p class="text-gray text-grayp">As soon as the market opens at 10:00 AM on the first day (21 st Sep), every participant will be
+                    allowed to login into his account.</p>
+                    <p class="text-gray text-grayp">The market will be up from 10:00 AM to 5:00 PM on 21 st , 22 nd &amp; 23 rd September 2018. This
+                      period is defined as “day” henceforth in the document.</p>
+                    <p class="text-gray text-grayp"> Participant has to buy stocks of at least 10 different companies, in order to get on the
+                        leaderboard.</p>
+                    <p class="text-gray text-grayp">Any buy bid or sell ask can be made within a margin of ±10% of the current share price. For ex, if
+                          the current share price of a share is Rs.100/-, a buy or sell bid can be made from any range
+                          between Rs. 90- Rs. 110/-</p>
+                    <p class="text-gray text-grayp">A transaction fee of 0.5% of total transaction cost will be charged from both the seller and the
+                            buyer for every successful transaction between the two.</p>
+                    <p class="text-gray text-grayp">When a user places a buy bid for the shares of company A, the amount he’s bidding for will be
+                              immediately cut from his account along with the relevant transaction fee of 0.5%.
+                              For ex., if the buyer buys 50 shares for Rs. 106 each share, the cost will be Rs.5300/-.
+                              Adding the 0.5% transaction charge the final cost that’ll be cut from the buyer’s account
+                              will be 1.05*5300= Rs.5565/-
+                              This amount will be immediately deducted, and the user won’t be able to access this
+                              amount.</p>
+                    <p class="text-gray text-grayp">The Ranking of the user is decided using a “Valuation Formula”. Valuation of the user will be
+                                60% of his total volume cost in Shares acquired + 40% of the cash balance in his account. This
+                                total will be termed as the valuation amount.</p>
+                    <p class="text-gray text-grayp">Only Integral Bids allowed. Decimal values will be invalid.</p>
+                    <p class="text-gray text-grayp">Participants can be disqualified for MALPRACTICES</p>
+                    <p class="text-gray text-grayp">News regarding the listed companies would be displayed every hour.</p>
+                    <p class="text-gray text-grayp">Portfolios of all listed companies have been provided for the participants convenience</p>
+                    <p class="text-gray text-grayp">Unexecuted bid would be deleted after 1 hour. Transaction fee would be refunded in case of
+                                          deleted bids.</p>
+                    <p class="text-gray text-grayp">Trading bonuses will be given to participants according to the amount traded.</p>
+                    <p class="text-gray text-grayp">Participants can also manually revoke the bids. Brokerage fees would be charged for revoking
+                                              BUYING bids. No fees would be charged on revoking selling bids.</p>
+
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+
+
+
+
+          <section>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="card mb-5 mb-lg-0">
+                  <div class="card-header">
+                    <h2 class="h6 mb-0 text-uppercase">Company Table</h2>
+                  </div>
+                  <div class="card-body">
+                   <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-outline-primary dropdown-toggle"></button>
+                              <div class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
+                                <div role="separator" class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
+                              </div>
+                            </div>
+                            <input type="text" aria-label="Text input with dropdown button" class="form-control">
+                          </div>
+                    <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">
+                      <div class="left d-flex align-items-center">
+                        <div class="icon icon-lg shadow mr-3 text-white"><i class="fab fa-dropbox"></i></div>
+                        <div class="text">
+                          <h6 class="mb-0 d-flex align-items-center"> <span>Dropbox Inc.</span><span class="dot dot-sm ml-2 bg-violet"></span></h6><small class="text-gray" style="color:white">Account renewal</small>
+                        </div>
+                      </div>
+                      <div class="right ml-5 ml-sm-0 pl-3 pl-sm-0 text-violet">
+                        <h5>-$20</h5>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-lg-6">
+                <div class="card mb-5 mb-lg-0">
+                  <div class="card-header">
+                    <h2 class="h6 mb-0 text-uppercase">My Shares</h2>
+                  </div>
+                  <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">
+                      <div class="left d-flex align-items-center">
+                        <div class="icon icon-lg shadow mr-3 text-gray"><i class="fab fa-dropbox"></i></div>
+                        <div class="text">
+                          <h6 class="mb-0 d-flex align-items-center"> <span>Dropbox Inc.</span><span class="dot dot-sm ml-2 bg-violet"></span></h6><small class="text-gray">Account renewal</small>
+                        </div>
+                      </div>
+                      <div class="right ml-5 ml-sm-0 pl-3 pl-sm-0 text-violet">
+                        <h5>-$20</h5>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">
+                      <div class="left d-flex align-items-center">
+                        <div class="icon icon-lg shadow mr-3 text-gray"><i class="fab fa-apple"></i></div>
+                        <div class="text">
+                          <h6 class="mb-0 d-flex align-items-center"> <span>App Store.</span><span class="dot dot-sm ml-2 bg-green"></span></h6><small class="text-gray">Software cost</small>
+                        </div>
+                      </div>
+                      <div class="right ml-5 ml-sm-0 pl-3 pl-sm-0 text-green">
+                        <h5>-$20</h5>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">
+                      <div class="left d-flex align-items-center">
+                        <div class="icon icon-lg shadow mr-3 text-gray"><i class="fas fa-shopping-basket"></i></div>
+                        <div class="text">
+                          <h6 class="mb-0 d-flex align-items-center"> <span>Supermarket.</span><span class="dot dot-sm ml-2 bg-blue"></span></h6><small class="text-gray">Shopping</small>
+                        </div>
+                      </div>
+                      <div class="right ml-5 ml-sm-0 pl-3 pl-sm-0 text-blue">
+                        <h5>-$20</h5>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">
+                      <div class="left d-flex align-items-center">
+                        <div class="icon icon-lg shadow mr-3 text-gray"><i class="fab fa-android"></i></div>
+                        <div class="text">
+                          <h6 class="mb-0 d-flex align-items-center"> <span>Play Store.</span><span class="dot dot-sm ml-2 bg-red"></span></h6><small class="text-gray">Software cost</small>
+                        </div>
+                      </div>
+                      <div class="right ml-5 ml-sm-0 pl-3 pl-sm-0 text-red">
+                        <h5>-$20</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+        <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 text-center text-md-left text-primary">
+                <p class="mb-2 mb-md-0">Your company &copy; 2018-2020</p>
+              </div>
+              <div class="col-md-6 text-center text-md-right text-gray-400">
+                <p class="mb-0">Design by <a href="https://bootstrapious.com/admin-templates" class="external text-gray-400">Bootstrapious</a></p>
+                <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+
+
+
+
+
+    <!-- JavaScript files-->
+    <script src="{% static 'bazaar/vendor/jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'bazaar/vendor/popper.js/umd/popper.min.js'%}"> </script>
+    <script src="{% static 'bazaar/vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'bazaar/vendor/jquery.cookie/jquery.cookie.js'%}"> </script>
+    <script src="{% static 'bazaar/vendor/chart.js/Chart.min.js'%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="{% static 'bazaar/js/charts-home.js'%}"></script>
+    <script src="{% static 'bazaar/js/front.js'%}"></script>
+  </body>
+</html>
