@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0201fcdf-1169-429c-bf8f-c2d30a11eaac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Wallstreet_Templates/bazaar/matchUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wallstreet_Templates/bazaar/matchUtilities.py" afterDir="false" />
-    </list>
+    <list default="true" id="0201fcdf-1169-429c-bf8f-c2d30a11eaac" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Wallstreet_Templates/bazaar/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="77" column="25" lean-forward="true" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
+            <state relative-caret-position="1580">
+              <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -214,8 +212,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Wallstreet_Templates/bazaar/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="77" column="25" lean-forward="true" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
+        <state relative-caret-position="1580">
+          <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
