@@ -17,3 +17,5 @@ from django.utils.crypto import get_random_string
 @task()
 def addNews():
     News.objects.create(title=get_random_string(10), description=get_random_string(50))
+
+

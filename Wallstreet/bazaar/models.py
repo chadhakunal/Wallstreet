@@ -79,6 +79,7 @@ class Global(models.Model):
     sensex = models.FloatField(default=0)
     spread = models.IntegerField(default=0)
     LiveText = models.CharField(max_length=100)
+    LeaderboardSize = models.IntegerField(default=100)
 
 
 class LeaderBoard(models.Model):
