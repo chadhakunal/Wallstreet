@@ -82,6 +82,10 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'bazaar.tasks.addNews',
         'schedule': 10,
     },
+    'task-leaderboard': {
+        'task': 'bazaar.tasks.LeaderBoardUpdateTask',
+        'schedule': 1200,
+    },
 }
 
 
@@ -120,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 

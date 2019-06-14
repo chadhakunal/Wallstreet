@@ -80,7 +80,7 @@ class Global(models.Model):
     spread = models.IntegerField(default=0)
     LiveText = models.CharField(max_length=100)
     LeaderboardSize = models.IntegerField(default=100)
-
+    LeaderBoardUpdateTime = models.DateTimeField(default=datetime.now)
 
 class LeaderBoard(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
