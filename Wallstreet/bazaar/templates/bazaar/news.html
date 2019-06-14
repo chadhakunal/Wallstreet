@@ -64,7 +64,7 @@
               <div class="dropdown-divider"></div><a href="#" class="dropdown-item text-center"><small class="font-weight-bold headings-font-family text-uppercase">View News</small></a>
             </div>
           </li>
-          <li class="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img src="img/avatar-6.jpg" alt="Jason Doe" style="max-width: 2.5rem;" class="img-fluid rounded-circle shadow"></a>
+          <li class="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img src="{% static 'bazaar/img/navLogo.png' %}" alt="" style="max-width: 2.5rem;" class="img-fluid rounded-circle shadow"></a>
             <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong class="d-block text-uppercase headings-font-family">Mark Stephen</strong><small>Valuation: </small></a>
               <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Transaction History</a>
               <div class="dropdown-divider"></div><a href="login.html" class="dropdown-item">Logout</a>
@@ -77,11 +77,11 @@
       <div id="sidebar" class="sidebar py-3">
         <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
         <ul class="sidebar-menu list-unstyled">
-              <li class="sidebar-list-item"><a href="{%url 'bazaar:index' %}" class="sidebar-link text-muted active"><i class="o-home-1 mr-3 text-gray"></i><span>Home</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:index' %}" class="sidebar-link text-muted"><i class="o-home-1 mr-3 text-gray"></i><span>Home</span></a></li>
               <li class="sidebar-list-item"><a href="{%url 'bazaar:company' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Company Info</span></a></li>
               <li class="sidebar-list-item"><a href="{%url 'bazaar:buy' %}" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Buy</span></a></li>
               <li class="sidebar-list-item"><a href="{%url 'bazaar:sell' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Sell</span></a></li>
-              <li class="sidebar-list-item"><a href="{%url 'bazaar:news' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>News</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:news' %}" class="sidebar-link text-muted active"><i class="o-table-content-1 mr-3 text-gray"></i><span>News</span></a></li>
               <li class="sidebar-list-item"><a href="{%url 'bazaar:transactions' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Transactions</span></a></li>
               <li class="sidebar-list-item"><a href="{%url 'bazaar:leaderboard' %}" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>Leaderboard</span></a></li>
 
@@ -90,33 +90,6 @@
 
       </div>
 
-      <!--div id="sidebar" class="sidebar py-3">
-        <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
-        <ul class="sidebar-menu list-unstyled">
-              <li class="sidebar-list-item"><a href="index.html" class="sidebar-link text-muted"><i class="o-home-1 mr-3 text-gray"></i><span>Home</span></a></li>
-              <li class="sidebar-list-item"><a href="charts.html" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Charts</span></a></li>
-              <li class="sidebar-list-item"><a href="tables.html" class="sidebar-link text-muted active"><i class="o-table-content-1 mr-3 text-gray"></i><span>Tables</span></a></li>
-              <li class="sidebar-list-item"><a href="forms.html" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>Forms</span></a></li>
-          <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>Pages</span></a>
-            <div id="pages" class="collapse">
-              <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
-                <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Page one</a></li>
-                <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Page two</a></li>
-                <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Page three</a></li>
-                <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Page four</a></li>
-              </ul>
-            </div>
-          </li>
-              <li class="sidebar-list-item"><a href="login.html" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>Login</span></a></li>
-        </ul>
-        <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">EXTRAS</div>
-        <ul class="sidebar-menu list-unstyled">
-              <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-database-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-              <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-imac-screen-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-              <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-paperwork-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-              <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-        </ul>
-      </div-->
       <div class="page-holder w-100 d-flex flex-wrap">
         <div class="container-fluid px-xl-5">
           <section class="py-5">
@@ -127,11 +100,11 @@
                     <h6 class="text-uppercase mb-0">News</h6>
                   </div>
                   <div class="card-body">
-                    <div class="row d-flex justify-content-around align-items-center p-3" style="width: 100%;border-bottom:0.5px solid rgba(0,0,0,0.3);border-radius: 15px;" >
+                    <div class="row d-flex justify-content-around align-items-center p-3" style="width: 100%;border-bottom:3px solid rgba(0,0,0,0.3);border-radius: 15px;" >
                       <div class="col-lg-9">
                         <div class="form-group">
                             <div class="input-group-append">
-                              <big type="text" style="">Tets News Lorem ipsum dolor sit amet, consectetur adipisicing elit. jdjdjdjd Tets News Lorem ipsum dolor sit amet, consectetur adipisicing elit. jdjdjdjd</big>
+                              <big type="text" style="font-weight: 600">Tets News Lorem ipsum dolor sit amet, consectetur adipisicing elit. jdjdjdjd Tets News Lorem ipsum dolor sit amet, consectetur adipisicing elit. jdjdjdjd</big>
                             </div>
                           </div>
                       </div>
@@ -139,7 +112,7 @@
                         <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary ml-auto">View News </button>
                       </div>
                     </div>
-                     <div class="row d-flex justify-content-around align-items-center p-3" style="width: 100%;border-bottom:0.5px solid rgba(0,0,0,0.3);border-radius: 15px;" >
+                     <div class="row d-flex justify-content-around align-items-center p-3" style="width: 100%;border-bottom:3px solid rgba(0,0,0,0.3);border-radius: 15px;" >
                       <div class="col-lg-9">
                         <div class="form-group">
                             <div class="input-group-append">

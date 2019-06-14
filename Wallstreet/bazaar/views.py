@@ -75,11 +75,25 @@ class CompanyView(View):
 
 class Buy(View):
     template = 'bazaar/buy.html'
+    context = {}
 
     # ToDo: Add validations in frontend
     def get(self, request):
         companies = Company.objects.all()
-        return render(request, self.template, {'companies': companies})
+        context = {'companies': companies}
+        return render(request, self.template, context)
+
+    def post(self, request):
+        company = Company.objects.get(name=request.POST["companyName"])
+        bidShares = request.POST["quantity"]
+        bidPrice = request.POST["price"]
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user))
+
+        match(company, profile, bidPrice, bidShares, True)
+
+        companies = Company.objects.all()
+        context = {'companies': companies, "message": "We have received your bid! We will process it soon! Thank you"}
+        return render(request, self.template, context)
 
 
 class Sell(View):
@@ -94,8 +108,26 @@ class Sell(View):
         for entry in userShares:
             if entry.company not in companies:
                 companies.append(entry.company)
-        return render(request, self.template, {'companies': companies})
+        context = {'companies': companies}
+        return render(request, self.template, context)
 
+    def post(self, request):
+        company = Company.objects.get(name=request.POST["companyName"])
+        bidShares = request.POST["quantity"]
+        bidPrice = request.POST["price"]
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user))
+
+        match(company, profile, bidPrice, bidShares, False)
+
+        companies = []
+        user = User.objects.get(username=request.user)
+        userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
+        print(len(userShares))
+        for entry in userShares:
+            if entry.company not in companies:
+                companies.append(entry.company)
+        context = {'companies': companies, 'message': "We have received your bid! We will process it soon! Thank you"}
+        return render(request, self.template, context)
 
 
 class News(View):
