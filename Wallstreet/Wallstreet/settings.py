@@ -80,11 +80,15 @@ CELERY_TIMEZONE = 'Asia/Kolkata'
 CELERY_BEAT_SCHEDULE = {
     'task-news': {
         'task': 'bazaar.tasks.addNews',
-        'schedule': 10,
+        'schedule': 900,
     },
     'task-leaderboard': {
         'task': 'bazaar.tasks.LeaderBoardUpdateTask',
         'schedule': 1200,
+    },
+    'task-emptyTables': {
+        'task': 'bazaar.tasks.emptyBuyTableSellTableTask',
+        'schedule': 1800,
     },
 }
 
