@@ -10,7 +10,7 @@ from datetime import datetime
 # Create your models here.
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='userprofile')  # Extending User Model
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Extending User Model
     rank = models.IntegerField(default=-1)  # Rank of the user
     numberOfShares = models.IntegerField(default=0)  # Number of shares owned by the user
     cash = models.IntegerField(default=380000)  # Cash remaining

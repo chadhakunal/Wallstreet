@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
@@ -33,6 +33,8 @@ class Login(View):
     template1 = 'bazaar/index.html'
 
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('../')
         return render(request, self.template, {})
 
     def post(self, request):
@@ -40,19 +42,31 @@ class Login(View):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render(request, self.template1, {})
+                return redirect("../")
         else:
             return render(request, self.template, {})
 
 
+def Logoff(request):
+    template = 'bazaar/login.html'
+    if request.user.is_authenticated:
+        logout(request)
+    return redirect("/login")
+
+
 class postlogin(View):
-    template1 = 'bazaar/index.html'
+    template = 'bazaar/index.html'
 
     def get(self, request):
-        return render(request, self.template1, {})
+        if not request.user.is_authenticated:
+            return redirect('/login')
+        all_companies = Company.objects.all()
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user))
+        context = {"all_companies": all_companies, "profile": profile}
+        return render(request, self.template, context)
 
 
-class Company(View):
+class CompanyView(View):
     template = 'bazaar/company.html'
 
     def get(self, request):
@@ -87,15 +101,8 @@ class Transactions(View):
         return render(request, self.template, {})
 
 
-class LeaderBoard(View):
+class LeaderBoardView(View):
     template = 'bazaar/leaderboard.html'
 
     def get(self, request):
         return render(request, self.template, {})
-
-
-def Logoff(request):
-    template = 'bazaar/login.html'
-    if request.user.is_authenticated:
-        logout(request)
-    return render(request, template, {})
