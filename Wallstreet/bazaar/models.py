@@ -26,7 +26,7 @@ class Company(models.Model):
     tempName = models.CharField(max_length=25)
     sharePrice = models.IntegerField(default=0)  # Company's share price
     totalNoOfShares = models.IntegerField(default=0)  # Total number of shares available for sale
-    sharesLeft = models.IntegerField(default=0)  # Number of shares left  ########(Redundant?)ny.objects.all()
+    sharesLeft = models.IntegerField(default=0)  # Number of shares left
 
     def __str__(self):
         return self.name
