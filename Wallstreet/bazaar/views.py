@@ -83,12 +83,11 @@ class Buy(View):
         context = {'companies': companies}
         return render(request, self.template, context)
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         company = Company.objects.get(name=request.POST["companyName"])
-        bidShares = request.POST["quantity"]
-        bidPrice = request.POST["price"]
-        profile = Profile.objects.filter(user=User.objects.get(username=request.user))
-
+        bidShares = int(request.POST["quantity"])
+        bidPrice = int(request.POST["price"])
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
         match(company, profile, bidPrice, bidShares, True)
 
         companies = Company.objects.all()
@@ -113,9 +112,9 @@ class Sell(View):
 
     def post(self, request):
         company = Company.objects.get(name=request.POST["companyName"])
-        bidShares = request.POST["quantity"]
-        bidPrice = request.POST["price"]
-        profile = Profile.objects.filter(user=User.objects.get(username=request.user))
+        bidShares = int(request.POST["quantity"])
+        bidPrice = int(request.POST["price"])
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
 
         match(company, profile, bidPrice, bidShares, False)
 

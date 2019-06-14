@@ -98,13 +98,16 @@
                     <h3 class="h6 text-uppercase mb-0" align="text-center">Sell</h3>
                   </div>
                   <div class="card-body">
-
-                    <form>
+                    {% if message %}
+                      <p style="color: red">{{message}}</p>
+                    {% endif %}
+                    <form action="/sell/" id="sellForm" method="post">
+                      {%csrf_token%}
                       <div class="form-group">
 
                             <div class="select">
                               <label class="form-control-label text-uppercase">Company</label>
-                              <select name="account" class="form-control" style="width: 100%">
+                              <select name="companyName" class="form-control" style="width: 100%" form="sellForm">
                                 {% for company in companies %}
                                 <option>{{ company.name }}</option>
                                 {% endfor %}
@@ -114,11 +117,11 @@
                       </div>
                       <div class="form-group">
                         <label class="form-control-label text-uppercase">Quantity</label>
-                        <input type="text" placeholder="Quantity" class="form-control">
+                        <input type="text" placeholder="Quantity" class="form-control" name="quantity">
                       </div>
                       <div class="form-group">
                         <label class="form-control-label text-uppercase">Selling Price</label>
-                        <input type="text" placeholder="Bid Price" class="form-control">
+                        <input type="text" placeholder="Bid Price" class="form-control" name="price">
                       </div>
                       <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>
