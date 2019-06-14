@@ -14,7 +14,8 @@ class Profile(models.Model):
     numberOfShares = models.IntegerField(default=0)  # Number of shares owned by the user
     cash = models.IntegerField(default=380000)  # Cash remaining
     netWorth = models.IntegerField(default=0)  # Users networth; Required for leaderboard;
-                                               # Calculated using cash and number of shares
+
+    # Calculated using cash and number of shares
 
     def __str__(self):
         return self.user.username
@@ -57,6 +58,7 @@ class BuyTable(models.Model):
     bidShares = models.IntegerField(default=0)  # Number of shares
     transactionTime = models.DateTimeField(default=datetime.now)  # Transaction Time
 
+
 class SellTable(models.Model):
     # Table to store sell requests
     company = models.ForeignKey(Company, on_delete=models.CASCADE)  # Company
@@ -64,6 +66,7 @@ class SellTable(models.Model):
     bidPrice = models.IntegerField(default=0)  # Sell Price
     bidShares = models.IntegerField(default=0)  # Number of shares
     transactionTime = models.DateTimeField(default=datetime.now)  # Transaction Time
+
 
 class News(models.Model):
     # Table to store news
