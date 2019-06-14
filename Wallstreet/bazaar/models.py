@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from datetime import datetime
 
@@ -81,6 +82,11 @@ class Global(models.Model):
     LiveText = models.CharField(max_length=100)
     LeaderboardSize = models.IntegerField(default=100)
     LeaderBoardUpdateTime = models.DateTimeField(default=datetime.now)
+    bidRangePercent = models.IntegerField(default=10, validators=[
+            MaxValueValidator(100),
+            MinValueValidator(1)
+        ])
+
 
 class LeaderBoard(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)

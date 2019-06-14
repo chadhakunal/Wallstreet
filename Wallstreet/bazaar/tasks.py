@@ -6,6 +6,7 @@ from django.utils.crypto import get_random_string
 from .matchUtilities import *
 from datetime import datetime
 
+
 # pip install eventlet
 # install redis
 
@@ -24,41 +25,47 @@ def addNews():
 
 @task()
 def LeaderBoardUpdateTask():
-    cashValuationPercent = 0.4
-    shareValuationPercent = 0.6
+    cashValuationPercent = 0.4  # Values for netWorth
+    shareValuationPercent = 0.6  # Values for netWorth
 
+    # Dictionary to store the company and sharePrice
     companyStockPrices = {}
 
     for i in Company.objects.all():
         companyStockPrices[i.name] = i.sharePrice
 
-    all_profiles = Profile.objects.all()
+    # Calculate Net Worth
+    all_profiles = Profile.objects.all()  # Get all Profiles
     for p in all_profiles:
+        # Calculate total value of shares
         shareValuation = 0
-        shareTableEntries = UserShareTable.objects.filter(profile=p)
+        shareTableEntries = UserShareTable.objects.filter(profile=p)  # Get all user shares
         for entry in shareTableEntries:
             shareValuation += companyStockPrices[entry.company] * entry.bidShares
 
-        p.netWorth = (cashValuationPercent * p.cash) + (shareValuationPercent * shareValuation)
+        p.netWorth = (cashValuationPercent * p.cash) + (
+                    shareValuationPercent * shareValuation)  # Calculate net worth of user
         p.save()
 
-    g = Global.objects.get(pk=1)
-    numberOfEntries = min(g.LeaderboardSize,len(all_profiles))
-    g.LeaderBoardUpdateTime = datetime.now()
+    g = Global.objects.get(pk=1)  # Get Global Values
+    numberOfEntries = min(g.LeaderboardSize, len(all_profiles))  # Get number of entries for leaderboard
+    g.LeaderBoardUpdateTime = datetime.now()  # Set the latest leaderboard update time
     g.save()
 
-    sorted_profiles = Profile.objects.all.order_by('-netWorth')[:numberOfEntries]
+    sorted_profiles = Profile.objects.all().order_by('-netWorth')[
+                      :numberOfEntries]  # Sort profiles according to netWorth
 
-    LeaderBoard.objects.all().delete()
+    LeaderBoard.objects.all().delete()  # Empty leader board
 
     for p in sorted_profiles:
+        # Add Entries to leader board
         LeaderBoard.objects.create(profile=p)
 
 
 @task()
 def emptyBuyTableSellTableTask():
-    buyTable = ""
-    sellTable = ""
+    buyTable = None
+    sellTable = None
 
     for company in Company.objects.all():
         exec("buyTable = BuyTable_" + company.tempName)
@@ -109,7 +116,7 @@ def emptyBuyTableSellTableTask():
                     # None of the buy bids are higher than the sell bids (including company share price)
                     break
 
-        # User Revoke if user inserted 1 hour ago
+        # User Revoke if user placed a bid 1 hour ago or earlier
         current_time = datetime.now()
 
         while i < len(sorted_buyTable):
@@ -120,6 +127,6 @@ def emptyBuyTableSellTableTask():
 
         while j < len(sorted_sellTable):
             if current_time.hour - sorted_sellTable[i].transactionTime.hour >= 1:
-                userRevoke(sorted_sellTable[i], True)
+                userRevoke(sorted_sellTable[i], False)
                 sellTable.objects.get(pk=sorted_sellTable[i].pk).delete()
             j += 1
