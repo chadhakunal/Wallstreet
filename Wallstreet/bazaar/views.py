@@ -61,8 +61,9 @@ class postlogin(View):
         if not request.user.is_authenticated:
             return redirect('/login')
         all_companies = Company.objects.all()
-        profile = Profile.objects.filter(user=User.objects.get(username=request.user))
-        context = {"all_companies": all_companies, "profile": profile}
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+        shares = UserShareTable.objects.filter(profile=profile)
+        context = {"companies": all_companies, "profile": profile}
         return render(request, self.template, context)
 
 
