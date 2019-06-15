@@ -102,7 +102,7 @@ def emptyBuyTableSellTableTask():
                         i = i + (flag == 0)  # Update counter only if buyTable entry deleted
                         continue
 
-                if sorted_sellTable and sorted_buyTable[i].bidPrice >= sorted_sellTable[j].bidPrice:
+                if (j < len(sorted_sellTable)) and sorted_sellTable and sorted_buyTable[i].bidPrice >= sorted_sellTable[j].bidPrice:
                     # User Match with sorted_buyTable[i] and sorted_sellTable[j]
                     flag = userTransaction(company, buyTable, sellTable, sorted_buyTable[i],
                                            sorted_sellTable[j])  # Perform Transaction

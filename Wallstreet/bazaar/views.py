@@ -59,7 +59,7 @@ def Logoff(request):
     template = 'bazaar/login.html'
     if request.user.is_authenticated:
         logout(request)
-    return redirect("/login")
+    return redirect("../login")
 
 
 class postlogin(View):
@@ -112,7 +112,6 @@ class Sell(View):
         companies = []
         user = User.objects.get(username=request.user)
         userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
-        print(len(userShares))
         for entry in userShares:
             if entry.company not in companies:
                 companies.append(entry.company)
@@ -130,7 +129,6 @@ class Sell(View):
         companies = []
         user = User.objects.get(username=request.user)
         userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
-        print(len(userShares))
         for entry in userShares:
             if entry.company not in companies:
                 companies.append(entry.company)
