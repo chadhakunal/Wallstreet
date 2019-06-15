@@ -85,7 +85,7 @@ def emptyBuyTableSellTableTask():
                     # if company has shares to sell
                     if not sorted_sellTable:
                         # If sorted_sellTable is empty check for company
-                        if sorted_buyTable[i].bidPrice > company.sharePrice:
+                        if sorted_buyTable[i].bidPrice >= company.sharePrice:
                             # Buy Request is greater than comapany current price
                             flag = userCompanyTrasaction(company, buyTable, sorted_buyTable[
                                 i])  # Perform transaction for company and buying user
@@ -93,16 +93,16 @@ def emptyBuyTableSellTableTask():
                             continue
                     # If sorted_sellTable has entry, but company.sharePrice is lesser than sellTable entry then
                     # sell shares of company
-                    elif company.sharePrice < sorted_sellTable[j].bidPrice and sorted_buyTable[
-                        i].bidPrice > company.sharePrice:
+                    elif (j < len(sorted_sellTable)) and company.sharePrice < sorted_sellTable[j].bidPrice and sorted_buyTable[
+                        i].bidPrice >= company.sharePrice:
                         # User Match with sorted_buyTable[i] with company shares ( company shares is least priced )
                         flag = userCompanyTrasaction(company, buyTable,
-                                                     sorted_buyTable[
-                                                         i])  # Perform transaction for company and buying user
+                                                     sorted_buyTable[i])
+                        # Perform transaction for company and buying user
                         i = i + (flag == 0)  # Update counter only if buyTable entry deleted
                         continue
 
-                if sorted_sellTable and sorted_buyTable[i].bidPrice > sorted_sellTable[j].bidPrice:
+                if sorted_sellTable and sorted_buyTable[i].bidPrice >= sorted_sellTable[j].bidPrice:
                     # User Match with sorted_buyTable[i] and sorted_sellTable[j]
                     flag = userTransaction(company, buyTable, sellTable, sorted_buyTable[i],
                                            sorted_sellTable[j])  # Perform Transaction
