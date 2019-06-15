@@ -11,6 +11,9 @@ from .matchUtilities import *
 
 # Create your views here.
 
+
+# Create your views here.
+
 class Register(View):
     template = 'bazaar/register.html'
 
@@ -19,11 +22,14 @@ class Register(View):
 
     def post(self, request):
         try:
-            user = User.objects.create_user(username=request.POST["username"], password=request.POST["password"])
+            user = User.objects.create_user(username=request.POST["username"])
+            password=User.objects.make_random_password(length=6)
+            user.set_password(password)
             user.save()
+
             profile = Profile.objects.create(user=user)
             profile.save()
-            return render(request, self.template, {})
+            return render(request, self.template, {"pass":password})
         except IntegrityError:
             return render(request, self.template, {"error": "Invalid Registration"})
 
@@ -39,12 +45,14 @@ class Login(View):
 
     def post(self, request):
         user = authenticate(username=request.POST["username"], password=request.POST["password"])
+
         if user is not None:
             if user.is_active:
                 login(request, user)
                 return redirect("../")
         else:
             return render(request, self.template, {})
+
 
 
 def Logoff(request):
@@ -61,8 +69,9 @@ class postlogin(View):
         if not request.user.is_authenticated:
             return redirect('/login')
         all_companies = Company.objects.all()
-        profile = Profile.objects.filter(user=User.objects.get(username=request.user))
-        context = {"all_companies": all_companies, "profile": profile}
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+        shares = UserShareTable.objects.filter(profile=profile)
+        context = {"companies": all_companies, "profile": profile,"userShareTable":shares}
         return render(request, self.template, context)
 
 
