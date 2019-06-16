@@ -84,7 +84,8 @@ class CompanyView(View):
     def get(self, request):
         profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
         sensex = Global.objects.filter(pk=1).first().sensex
-        context = {"profile":profile, "sensex":sensex}
+        companies = Company.objects.all()
+        context = {"profile":profile, "sensex":sensex, "companies": companies}
         return render(request, self.template, context)
 
 
