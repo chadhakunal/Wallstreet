@@ -86,6 +86,7 @@ class Global(models.Model):
             MaxValueValidator(100),
             MinValueValidator(1)
         ])
+    registrationKey = models.CharField(max_length=20, default="abcde")
 
 
 class LeaderBoard(models.Model):

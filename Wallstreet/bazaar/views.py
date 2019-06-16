@@ -18,14 +18,17 @@ class Register(View):
 
     def post(self, request):
         try:
-            user = User.objects.create_user(username=request.POST["username"])
-            password=User.objects.make_random_password(length=6)
-            user.set_password(password)
-            user.save()
+            g = Global.objects.get(pk=1)
+            if request.POST["password"] == g.registrationKey:
+                user = User.objects.create_user(username=request.POST["username"])
+                password = User.objects.make_random_password(length=6)
+                user.set_password(password)
+                user.save()
 
-            profile = Profile.objects.create(user=user)
-            profile.save()
-            return render(request, self.template, {"pass":password})
+                profile = Profile.objects.create(user=user)
+                profile.save()
+                return render(request, self.template, {"pass": password})
+            return render(request, self.template, {"error": "Invalid Registration"})
         except IntegrityError:
             return render(request, self.template, {"error": "Invalid Registration"})
 
@@ -52,9 +55,7 @@ class Login(View):
             return render(request, self.template, context)
 
 
-
 def Logoff(request):
-    template = 'bazaar/login.html'
     if request.user.is_authenticated:
         logout(request)
     return redirect("../login")
