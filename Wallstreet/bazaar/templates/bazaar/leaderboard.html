@@ -53,7 +53,7 @@
                 <div class="d-flex align-items-center">
                   <div class="icon icon-sm bg-violet text-white"><i class="fa fa-bar-chart" aria-hidden="true"></i></div>
                   <div class="text ml-2">
-                    <p class="mb-0">Sensex - {{ sensex }}</p>
+                    <p class="mb-0">Sensex: {{ sensex }}</p>
                   </div>
                 </div></a>
                 <a href="{% url 'bazaar:news' %}" class="dropdown-item">
@@ -67,7 +67,8 @@
             </div>
           </li>
           <li class="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img src="{% static 'bazaar/img/navLogo.png' %}" alt="Jason Doe" style="max-width: 1.5rem;" class="img-fluid rounded-circle shadow"></a>
-            <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong class="d-block text-uppercase headings-font-family">{{ profile.user.username }}</strong><small>Rank: {{ profile.rank }}</small><br/><small>Valuation: {{ profile.cash }}</small></a>
+            <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong class="d-block text-uppercase headings-font-family">{{ profile.user.username }}</strong><small>Cash: {{ profile.cash }}</small><br/><small>Net Worth: {{ profile.netWorth }}</small><br/><small>Rank: {{ profile.rank }}</small></a>
+              <div class="dropdown-divider"></div><a href="../#sectionMyShares" class="dropdown-item">Your Shares</a>
               <div class="dropdown-divider"></div><a href="{% url 'bazaar:transactions' %}" class="dropdown-item">Transaction History</a>
               <div class="dropdown-divider"></div><a href="{%url 'bazaar:logoff'%}" class="dropdown-item">Logout</a>
             </div>
@@ -81,45 +82,19 @@
         <ul class="sidebar-menu list-unstyled">
               <li class="sidebar-list-item"><a href="{%url 'bazaar:index' %}" class="sidebar-link text-muted "><i class="o-home-1 mr-3 text-gray"></i><span>Home</span></a></li>
               <li class="sidebar-list-item"><a href="{%url 'bazaar:company' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Company Info</span></a></li>
-              <li class="sidebar-list-item"><a href="{%url 'bazaar:buy' %}" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Buy</span></a></li>
-              <li class="sidebar-list-item"><a href="{%url 'bazaar:sell' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Sell</span></a></li>
-              <li class="sidebar-list-item"><a href="{%url 'bazaar:news' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>News</span></a></li>
-              <li class="sidebar-list-item"><a href="{%url 'bazaar:transactions' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Transactions</span></a></li>
+              <li class="sidebar-list-item"><a href="../#sectionMyShares" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Your Shares</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:buy' %}" class="sidebar-link text-muted "><i class="o-sales-up-1 mr-3 text-gray"></i><span>Buy</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:sell' %}" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Sell</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:news' %}" class="sidebar-link text-muted "><i class="o-table-content-1 mr-3 text-gray"></i><span>News</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:transactions' %}" class="sidebar-link text-muted "><i class="o-table-content-1 mr-3 text-gray"></i><span>Transactions</span></a></li>
               <li class="sidebar-list-item"><a href="{%url 'bazaar:leaderboard' %}" class="sidebar-link text-muted active"><i class="o-survey-1 mr-3 text-gray"></i><span>Leaderboard</span></a></li>
-
 
               <li class="sidebar-list-item"><a href="{%url 'bazaar:logoff'%}" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>Logout</span></a></li>
         </ul>
 
       </div>
 
-      <!--div id="sidebar" class="sidebar py-3">
-        <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
-        <ul class="sidebar-menu list-unstyled">
-              <li class="sidebar-list-item"><a href="index.html" class="sidebar-link text-muted"><i class="o-home-1 mr-3 text-gray"></i><span>Home</span></a></li>
-              <li class="sidebar-list-item"><a href="charts.html" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Charts</span></a></li>
-              <li class="sidebar-list-item"><a href="tables.html" class="sidebar-link text-muted active"><i class="o-table-content-1 mr-3 text-gray"></i><span>Tables</span></a></li>
-              <li class="sidebar-list-item"><a href="forms.html" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>Forms</span></a></li>
-          <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>Pages</span></a>
-            <div id="pages" class="collapse">
-              <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
-                <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Page one</a></li>
-                <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Page two</a></li>
-                <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Page three</a></li>
-                <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Page four</a></li>
-              </ul>
-            </div>
-          </li>
-              <li class="sidebar-list-item"><a href="login.html" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>Login</span></a></li>
-        </ul>
-        <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">EXTRAS</div>
-        <ul class="sidebar-menu list-unstyled">
-              <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-database-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-              <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-imac-screen-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-              <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-paperwork-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-              <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-        </ul>
-      </div-->
+
       <div class="page-holder w-100 d-flex flex-wrap">
         <div class="container-fluid px-xl-5">
           <section class="py-5">
@@ -130,7 +105,7 @@
                     <h6 class="text-uppercase mb-0">Leaderboard</h6>
                   </div>
                   <div class="card-body">
-                    <p style="text-align:right; font-size:10pt">Leader Board last updated at: {{update_time.day}}/{{update_time.month}}/{{update_time.year}} &nbsp;{{update_time.hour}}:{{update_time.minute}}</p>
+                    <p style="text-align:right; font-size:10pt">Leader Board last updated on: {{update_time}}</p>
                     <table class="table table-striped table-hover card-text">
                       <thead>
                         <tr>

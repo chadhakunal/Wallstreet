@@ -52,7 +52,7 @@
                 <div class="d-flex align-items-center">
                   <div class="icon icon-sm bg-violet text-white"><i class="fa fa-bar-chart" aria-hidden="true"></i></div>
                   <div class="text ml-2">
-                    <p class="mb-0">Sensex - {{ sensex }}</p>
+                    <p class="mb-0">Sensex: {{ sensex }}</p>
                   </div>
                 </div></a>
                 <a href="{% url 'bazaar:news' %}" class="dropdown-item">
@@ -66,7 +66,8 @@
             </div>
           </li>
           <li class="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img src="{% static 'bazaar/img/navLogo.png' %}" alt="Jason Doe" style="max-width: 1.5rem;" class="img-fluid rounded-circle shadow"></a>
-            <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong class="d-block text-uppercase headings-font-family">{{ profile.user.username }}</strong><small>Rank: {{ profile.rank }}</small><br/><small>Valuation: {{ profile.cash }}</small></a>
+            <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong class="d-block text-uppercase headings-font-family">{{ profile.user.username }}</strong><small>Cash: {{ profile.cash }}</small><br/><small>Net Worth: {{ profile.netWorth }}</small><br/><small>Rank: {{ profile.rank }}</small></a>
+              <div class="dropdown-divider"></div><a href="../#sectionMyShares" class="dropdown-item">Your Shares</a>
               <div class="dropdown-divider"></div><a href="{% url 'bazaar:transactions' %}" class="dropdown-item">Transaction History</a>
               <div class="dropdown-divider"></div><a href="{%url 'bazaar:logoff'%}" class="dropdown-item">Logout</a>
             </div>
@@ -78,10 +79,11 @@
       <div id="sidebar" class="sidebar py-3">
         <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
         <ul class="sidebar-menu list-unstyled">
-              <li class="sidebar-list-item"><a href="{%url 'bazaar:index' %}" class="sidebar-link text-muted"><i class="o-home-1 mr-3 text-gray"></i><span>Home</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:index' %}" class="sidebar-link text-muted "><i class="o-home-1 mr-3 text-gray"></i><span>Home</span></a></li>
               <li class="sidebar-list-item"><a href="{%url 'bazaar:company' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Company Info</span></a></li>
-              <li class="sidebar-list-item"><a href="{%url 'bazaar:buy' %}" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Buy</span></a></li>
-              <li class="sidebar-list-item"><a href="{%url 'bazaar:sell' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Sell</span></a></li>
+              <li class="sidebar-list-item"><a href="../#sectionMyShares" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Your Shares</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:buy' %}" class="sidebar-link text-muted "><i class="o-sales-up-1 mr-3 text-gray"></i><span>Buy</span></a></li>
+              <li class="sidebar-list-item"><a href="{%url 'bazaar:sell' %}" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Sell</span></a></li>
               <li class="sidebar-list-item"><a href="{%url 'bazaar:news' %}" class="sidebar-link text-muted active"><i class="o-table-content-1 mr-3 text-gray"></i><span>News</span></a></li>
               <li class="sidebar-list-item"><a href="{%url 'bazaar:transactions' %}" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>Transactions</span></a></li>
               <li class="sidebar-list-item"><a href="{%url 'bazaar:leaderboard' %}" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>Leaderboard</span></a></li>
@@ -111,11 +113,15 @@
                               {% else %}
                                 <strong type="text" style="...">{{ n.title }}</strong>
                               {% endif %}
+                              
                             </div>
                           </div>
+                          
+                          <p style="text-align:left; font-size:10pt">{{n.time}}</p>
                       </div>
                       <div class="col-lg-3">
                         <button type="button" id={{n.pk}} data-toggle="modal" data-target="#myModal{{n.pk}}" class="btn btn-primary ml-auto">View News </button>
+                        
                       </div>
 
                       <!-- Modal-->

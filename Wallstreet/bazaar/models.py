@@ -73,7 +73,7 @@ class News(models.Model):
     # Table to store news
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-
+    time = models.DateTimeField(default=datetime.now)
 
 class Global(models.Model):
     # Global Table

@@ -8,9 +8,10 @@ from datetime import datetime
 from .models import *
 from .matchUtilities import *
 
-
 # Create your views here.
 startStopMarket = Global.objects.get(pk=1).startStopMarket
+
+
 # startStopMarket = True
 
 class Register(View):
@@ -74,7 +75,7 @@ class postlogin(View):
         profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
         shares = UserShareTable.objects.filter(profile=profile)
         sensex = Global.objects.filter(pk=1).first().sensex
-        context = {"companies": all_companies, "profile": profile, "userShareTable":shares, "sensex":sensex}
+        context = {"companies": all_companies, "profile": profile, "userShareTable": shares, "sensex": sensex}
         return render(request, self.template, context)
 
 
@@ -85,7 +86,7 @@ class CompanyView(View):
         profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
         sensex = Global.objects.filter(pk=1).first().sensex
         companies = Company.objects.all()
-        context = {"profile":profile, "sensex":sensex, "companies": companies}
+        context = {"profile": profile, "sensex": sensex, "companies": companies}
         return render(request, self.template, context)
 
 
@@ -100,7 +101,7 @@ class Buy(View):
             profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
             sensex = Global.objects.filter(pk=1).first().sensex
             companies = Company.objects.all()
-            context = {'companies': companies, "profile":profile, "sensex":sensex}
+            context = {'companies': companies, "profile": profile, "sensex": sensex}
             return render(request, self.template, context)
         else:
             return render(request, self.error)
@@ -116,8 +117,9 @@ class Buy(View):
             match(company, profile, bidPrice, bidShares, True)
 
             companies = Company.objects.all()
-            context = {'companies': companies, "message": "We have received your bid! We will process it soon! Thank you",
-                       "profile":profile, "sensex":sensex}
+            context = {'companies': companies,
+                       "message": "We have received your bid! We will process it soon! Thank you",
+                       "profile": profile, "sensex": sensex}
             return render(request, self.template, context)
         else:
             return render(request, self.error)
@@ -138,7 +140,7 @@ class Sell(View):
             for entry in userShares:
                 if entry.company not in companies:
                     companies.append(entry.company)
-            context = {'companies': companies, "profile":profile, "sensex":sensex}
+            context = {'companies': companies, "profile": profile, "sensex": sensex}
             return render(request, self.template, context)
         else:
             return render(request, self.error)
@@ -160,8 +162,9 @@ class Sell(View):
             for entry in userShares:
                 if entry.company not in companies:
                     companies.append(entry.company)
-            context = {'companies': companies, 'message': "We have received your bid! We will process it soon! Thank you",
-                       "profile":profile, "sensex":sensex}
+            context = {'companies': companies,
+                       'message': "We have received your bid! We will process it soon! Thank you",
+                       "profile": profile, "sensex": sensex}
             return render(request, self.template, context)
         else:
             return render(request, self.error)
@@ -174,7 +177,7 @@ class NewsView(View):
         profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
         sensex = Global.objects.filter(pk=1).first().sensex
         news = News.objects.all()
-        context = {"profile": profile, "sensex": sensex, "news":news[::-1]}
+        context = {"profile": profile, "sensex": sensex, "news": news[::-1]}
         return render(request, self.template, context)
 
 
@@ -218,8 +221,9 @@ class LeaderBoardView(View):
 
     def get(self, request):
         profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
-        sensex = Global.objects.filter(pk=1).first().sensex
+        g = Global.objects.filter(pk=1).first()
+        sensex = g.sensex
         leaderboard = LeaderBoard.objects.all()
-        update_time = datetime.now()
+        update_time = g.LeaderBoardUpdateTime
         context = {"profile": profile, "sensex": sensex, "leaderboard": leaderboard, "update_time": update_time}
         return render(request, self.template, context)
