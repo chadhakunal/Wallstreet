@@ -108,7 +108,7 @@ class Buy(View):
 
     def post(self, request, *args, **kwargs):
         if startStopMarket:
-            companyName = request.POST["companyName"].split(' -')[0]
+            companyName = request.POST["companyName"].split(' :')[0]
             company = Company.objects.get(name=companyName)
             bidShares = int(request.POST["quantity"])
             bidPrice = int(request.POST["price"])
@@ -147,8 +147,8 @@ class Sell(View):
 
     def post(self, request):
         if startStopMarket:
-            companyName = request.POST["companyName"].split(' -')[0]
-            company = Company.objects.get(companyName)
+            companyName = request.POST["companyName"].split(' :')[0]
+            company = Company.objects.get(name=companyName)
             bidShares = int(request.POST["quantity"])
             bidPrice = int(request.POST["price"])
             profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()

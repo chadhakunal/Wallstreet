@@ -100,18 +100,20 @@
                     <h3 class="h6 text-uppercase mb-0" align="text-center">Sell</h3>
                   </div>
                   <div class="card-body">
+                    <p style="color: red">* Value beside the company indicates current share price</p>
                     {% if message %}
                       <p style="color: red">{{message}}</p>
                     {% endif %}
+                    <p id="validation" style="color: red;display: none">Invalid Bid</p>
                     <form action="/sell/" id="sellForm" method="post">
                       {%csrf_token%}
                       <div class="form-group">
 
                             <div class="select">
                               <label class="form-control-label text-uppercase">Company</label>
-                              <select name="companyName" class="form-control" style="width: 100%" form="sellForm">
+                              <select id="company" name="companyName" class="form-control" style="width: 100%" form="sellForm">
                                 {% for company in companies %}
-                                <option>{{ company.name }}:  Rs.{{ company.sharePrice }}</option>
+                                <option>{{ company.name }} :   Rs.{{ company.sharePrice }}</option>
                                 {% endfor %}
                               </select>
                             </div>
@@ -119,16 +121,17 @@
                       </div>
                       <div class="form-group">
                         <label class="form-control-label text-uppercase">Quantity</label>
-                        <input type="text" placeholder="Quantity" class="form-control" name="quantity">
+                        <input id="quantity" type="text" placeholder="Quantity" class="form-control" name="quantity">
                       </div>
                       <div class="form-group">
                         <label class="form-control-label text-uppercase">Selling Price</label>
-                        <input type="text" placeholder="Bid Price" class="form-control" name="price">
+                        <input id="bidPrice" type="text" placeholder="Bid Price" class="form-control" name="price">
                       </div>
                       <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button id="submitForm" style="display:none" type="submit" class="btn btn-primary"></button>
                       </div>
                     </form>
+                    <button id="submitButton" class="btn btn-primary">Submit</button>
                   </div>
                 </div>
               </div>
@@ -153,6 +156,29 @@
         </footer>
       </div>
     </div>
+
+    <script>
+      document.getElementById("submitButton").onclick = function(){
+        selectString = document.getElementById("company").value
+        currentPrice = ""
+        for(let i = selectString.length - 1;selectString[i]!=".";i--){
+          currentPrice = selectString[i]+currentPrice
+        }
+        currentPrice = parseInt(currentPrice)
+        bidPrice = parseInt(document.getElementById("bidPrice").value)
+        quantity = parseInt(document.getElementById("quantity").value)
+        
+        if(isNaN(bidPrice) || isNaN(quantity) || bidPrice<=0 || quantity<=0 || bidPrice<0.9*currentPrice || bidPrice>1.1*currentPrice){
+          document.getElementById("validation").style = "color:red"
+        }
+        else{
+          document.getElementById("submitForm").click()
+        }
+        
+        
+      }
+    </script>
+
     <!-- JavaScript files-->
     <script src="{% static 'bazaar/vendor/jquery/jquery.min.js'%}"></script>
     <script src="{% static 'bazaar/vendor/popper.js/umd/popper.min.js'%}"> </script>

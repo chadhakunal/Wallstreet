@@ -382,15 +382,12 @@
     
     
     <script>
-      //let i = 2
-      //document.getElementById("company_"+i.toString()).style = ""
       number_of_companies = parseInt(document.getElementById("length").innerHTML)
       search = document.getElementById("Search")
       
       let list_of_companies = []
       for(i=1;i<=number_of_companies;i++){
         list_of_companies.push(document.getElementById("company_"+i.toString()).childNodes[1].childNodes[0].nodeValue)
-        
       }
       
       

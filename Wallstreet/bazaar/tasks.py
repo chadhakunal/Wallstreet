@@ -6,7 +6,6 @@ from .matchUtilities import *
 from datetime import datetime
 import pandas as pd
 
-
 # pip install eventlet
 # install redis
 
@@ -16,6 +15,14 @@ import pandas as pd
 
 # Add tasks in settings
 
+# ToDo: User bidshares validation
+# ToDo: Hide validations
+# ToDo: add spread and sensex
+# ToDO: add matchUtilities as a task
+# ToDO: add 'spread' task
+# ToDo: news upload only when market starts
+# ToDo: Documentation
+# ToDo: WebSockets
 
 news = pd.read_csv('news.csv')
 
@@ -56,7 +63,7 @@ def LeaderBoardUpdateTask():
             shareValuation += companyStockPrices[entry.company] * entry.bidShares
 
         p.netWorth = (cashValuationPercent * p.cash) + (
-                    shareValuationPercent * shareValuation)  # Calculate net worth of user
+                shareValuationPercent * shareValuation)  # Calculate net worth of user
         p.save()
 
     g = Global.objects.get(pk=1)  # Get Global Values
@@ -110,8 +117,9 @@ def emptyBuyTableSellTableTask():
                             continue
                     # If sorted_sellTable has entry, but company.sharePrice is lesser than sellTable entry then
                     # sell shares of company
-                    elif (j < len(sorted_sellTable)) and company.sharePrice < sorted_sellTable[j].bidPrice and sorted_buyTable[
-                        i].bidPrice >= company.sharePrice:
+                    elif (j < len(sorted_sellTable)) and company.sharePrice < sorted_sellTable[j].bidPrice and \
+                            sorted_buyTable[
+                                i].bidPrice >= company.sharePrice:
                         # User Match with sorted_buyTable[i] with company shares (company shares is least priced)
                         flag = userCompanyTrasaction(company, buyTable,
                                                      sorted_buyTable[i])
@@ -119,7 +127,8 @@ def emptyBuyTableSellTableTask():
                         i = i + (flag == 0)  # Update counter only if buyTable entry deleted
                         continue
 
-                if (j < len(sorted_sellTable)) and sorted_sellTable and sorted_buyTable[i].bidPrice >= sorted_sellTable[j].bidPrice:
+                if (j < len(sorted_sellTable)) and sorted_sellTable and sorted_buyTable[i].bidPrice >= sorted_sellTable[
+                    j].bidPrice:
                     # User Match with sorted_buyTable[i] and sorted_sellTable[j]
                     flag = userTransaction(company, buyTable, sellTable, sorted_buyTable[i],
                                            sorted_sellTable[j])  # Perform Transaction
