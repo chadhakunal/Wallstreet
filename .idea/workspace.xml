@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0201fcdf-1169-429c-bf8f-c2d30a11eaac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Wallstreet/bazaar/matchUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wallstreet/bazaar/matchUtilities.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wallstreet/bazaar/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wallstreet/bazaar/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wallstreet/bazaar/templates/bazaar/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Wallstreet/bazaar/templates/bazaar/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wallstreet/bazaar/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wallstreet/bazaar/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wallstreet/bazaar/templates/bazaar/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Wallstreet/bazaar/templates/bazaar/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wallstreet/bazaar/templates/bazaar/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Wallstreet/bazaar/templates/bazaar/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Wallstreet/bazaar/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wallstreet/bazaar/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Wallstreet/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Wallstreet/db.sqlite3" afterDir="false" />
     </list>
@@ -19,13 +20,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="21" />
-          <entry key="py" value="81" />
+          <entry key="py" value="222" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="21" />
-          <entry key="Python" value="81" />
+          <entry key="Python" value="222" />
         </counts>
       </usages-collector>
     </session>
@@ -35,11 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Wallstreet/bazaar/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="61" column="23" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
+            <state relative-caret-position="34">
+              <caret line="56" column="89" selection-start-line="56" selection-start-column="89" selection-end-line="56" selection-end-column="89" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -78,17 +79,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Wallstreet/bazaar/templates/bazaar/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+            <state relative-caret-position="148">
+              <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Wallstreet/bazaar/matchUtilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
+            <state relative-caret-position="119">
+              <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -96,11 +97,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Wallstreet/bazaar/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="87" column="9" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+            <state relative-caret-position="255">
+              <caret line="88" column="18" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
-                <marker date="1560517331868" expanded="true" signature="1289:1295" ph="..." />
+                <marker date="1560624576577" expanded="true" signature="1289:1295" ph="..." />
               </folding>
             </state>
           </provider>
@@ -145,13 +146,13 @@
         <option value="$PROJECT_DIR$/Wallstreet/Wallstreet/__init__.py" />
         <option value="$PROJECT_DIR$/Wallstreet/Wallstreet/settings.py" />
         <option value="$PROJECT_DIR$/Wallstreet/bazaar/urls.py" />
-        <option value="$PROJECT_DIR$/Wallstreet/bazaar/models.py" />
         <option value="$PROJECT_DIR$/Wallstreet/bazaar/templates/bazaar/sell.html" />
         <option value="$PROJECT_DIR$/Wallstreet/bazaar/templates/bazaar/buy.html" />
         <option value="$PROJECT_DIR$/Wallstreet/bazaar/templates/bazaar/index.html" />
         <option value="$PROJECT_DIR$/Wallstreet/bazaar/tasks.py" />
-        <option value="$PROJECT_DIR$/Wallstreet/bazaar/views.py" />
         <option value="$PROJECT_DIR$/Wallstreet/bazaar/matchUtilities.py" />
+        <option value="$PROJECT_DIR$/Wallstreet/bazaar/models.py" />
+        <option value="$PROJECT_DIR$/Wallstreet/bazaar/views.py" />
       </list>
     </option>
   </component>
@@ -242,8 +243,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49947754" visible="true" weight="0.25973153" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49947754" visible="true" weight="0.2590604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5005225" side_tool="true" weight="0.24986821" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -263,27 +265,6 @@
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="right" id="R Packages" order="4" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49947754" visible="true" weight="0.256194" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" sideWeight="0.5005225" side_tool="true" weight="0.24986821" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3291536" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49815497" visible="true" weight="0.32810867" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.501845" side_tool="true" weight="0.32846716" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="right" id="R Packages" order="4" />
-    </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Wallstreet/bazaar/tests.py">
@@ -342,8 +323,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Wallstreet/bazaar/templates/bazaar/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        <state relative-caret-position="148">
+          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -371,31 +352,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Wallstreet/bazaar/matchUtilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Wallstreet/bazaar/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="87" column="9" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+        <state relative-caret-position="255">
+          <caret line="88" column="18" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-            <marker date="1560517331868" expanded="true" signature="1289:1295" ph="..." />
+            <marker date="1560624576577" expanded="true" signature="1289:1295" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Wallstreet/bazaar/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="61" column="23" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
+        <state relative-caret-position="34">
+          <caret line="56" column="89" selection-start-line="56" selection-start-column="89" selection-end-line="56" selection-end-column="89" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Wallstreet/bazaar/matchUtilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
         </state>
       </provider>
     </entry>
