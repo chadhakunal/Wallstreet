@@ -25,7 +25,7 @@ urlpatterns = [
     path('company/', views.CompanyView.as_view(), name='company'),
     path('buy/', views.Buy.as_view(), name='buy'),
     path('sell/', views.Sell.as_view(), name='sell'),
-    path('news/', views.News.as_view(), name='news'),
+    path('news/', views.NewsView.as_view(), name='news'),
     path('transactions/', views.Transactions.as_view(), name='transactions'),
     path('leaderboard/', views.LeaderBoardView.as_view(), name='leaderboard'),
 ]

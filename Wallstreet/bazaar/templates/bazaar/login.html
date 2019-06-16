@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bubbly - Boootstrap 4 Admin template by Bootstrapious.com</title>
+    <title>Welcome to Wallstreet!</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -21,7 +21,8 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{% static 'bazaar/css/custom.css'%}">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{% static 'bazaar/img/favicon.png?3'%}">
+    <link rel="shortcut icon" href="{% static 'bazaar/img/favicon.png'%}">
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -49,7 +50,9 @@
           <div class="col-lg-5 px-lg-4">
             <h1 class="text-base text-primary text-uppercase mb-4">Wallstreet</h1>
             <h2 style="color: white" class="mb-4">Welcome!</h2>
-
+            {% if message %}
+              <p style="color: red">{{message}}</p>
+            {% endif %}
             <form id="loginForm" method="post" action="" class="mt-4">
               {%csrf_token%}
               <div class="form-group mb-4">

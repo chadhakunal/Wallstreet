@@ -21,7 +21,8 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{% static 'bazaar/css/custom.css'%}">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{% static 'bazaar/img/favicon.png?3'%}">
+    <link rel="shortcut icon" href="{% static 'bazaar/img/favicon.png'%}">
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -47,25 +48,25 @@
           <li class="nav-item dropdown mr-3"><a id="notifications" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-gray-400 px-1"><i class="fa fa-bell"></i><span class="notification-icon"></span></a>
             <div aria-labelledby="notifications" class="dropdown-menu"><a href="#" class="dropdown-item">
                 <div class="d-flex align-items-center">
-                  <div class="icon icon-sm bg-violet text-white"><i class="fab fa-twitter"></i></div>
+                  <div class="icon icon-sm bg-violet text-white"><i class="fa fa-bar-chart" aria-hidden="true"></i></div>
                   <div class="text ml-2">
-                    <p class="mb-0">Sensex</p>
+                    <p class="mb-0">Sensex - {{ sensex }}</p>
                   </div>
                 </div></a>
-                <a href="#" class="dropdown-item">
+                <a href="{% url 'bazaar:news' %}" class="dropdown-item">
                 <div class="d-flex align-items-center">
                   <div class="icon icon-sm bg-green text-white"><i class="fas fa-envelope"></i></div>
                   <div class="text ml-2">
                     <p class="mb-0">Latest News</p>
                   </div>
                 </div></a>
-              <div class="dropdown-divider"></div><a href="#" class="dropdown-item text-center"><small class="font-weight-bold headings-font-family text-uppercase">View News</small></a>
+              <div class="dropdown-divider"></div><a href="{% url 'bazaar:news' %}" class="dropdown-item text-center"><small class="font-weight-bold headings-font-family text-uppercase">View News</small></a>
             </div>
           </li>
-          <li class="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img src="{% static 'bazaar/img/navLogo.png' %}" alt="Jason Doe" style="max-width: 2.5rem;" class="img-fluid rounded-circle shadow"></a>
-            <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong class="d-block text-uppercase headings-font-family">Mark Stephen</strong><small>Valuation: </small></a>
-              <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Transaction History</a>
-              <div class="dropdown-divider"></div><a href="login.html" class="dropdown-item">Logout</a>
+          <li class="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img src="{% static 'bazaar/img/navLogo.png' %}" alt="Jason Doe" style="max-width: 1.5rem;" class="img-fluid rounded-circle shadow"></a>
+            <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong class="d-block text-uppercase headings-font-family">{{ profile.user.username }}</strong><small>Valuation: {{ profile.cash }}</small></a>
+              <div class="dropdown-divider"></div><a href="{% url 'bazaar:transactions' %}" class="dropdown-item">Transaction History</a>
+              <div class="dropdown-divider"></div><a href="{%url 'bazaar:logoff'%}" class="dropdown-item">Logout</a>
             </div>
           </li>
         </ul>

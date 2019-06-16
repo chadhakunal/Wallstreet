@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -7,9 +6,6 @@ from django.db import IntegrityError
 
 from .models import *
 from .matchUtilities import *
-
-
-# Create your views here.
 
 
 # Create your views here.
@@ -51,7 +47,9 @@ class Login(View):
                 login(request, user)
                 return redirect("../")
         else:
-            return render(request, self.template, {})
+            message = "Invalid Username or Password!"
+            context = {"message": message}
+            return render(request, self.template, context)
 
 
 
@@ -71,7 +69,8 @@ class postlogin(View):
         all_companies = Company.objects.all()
         profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
         shares = UserShareTable.objects.filter(profile=profile)
-        context = {"companies": all_companies, "profile": profile,"userShareTable":shares}
+        sensex = Global.objects.filter(pk=1).first().sensex
+        context = {"companies": all_companies, "profile": profile, "userShareTable":shares, "sensex":sensex}
         return render(request, self.template, context)
 
 
@@ -79,7 +78,10 @@ class CompanyView(View):
     template = 'bazaar/company.html'
 
     def get(self, request):
-        return render(request, self.template, {})
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+        sensex = Global.objects.filter(pk=1).first().sensex
+        context = {"profile":profile, "sensex":sensex}
+        return render(request, self.template, context)
 
 
 class Buy(View):
@@ -88,8 +90,10 @@ class Buy(View):
 
     # ToDo: Add validations in frontend
     def get(self, request):
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+        sensex = Global.objects.filter(pk=1).first().sensex
         companies = Company.objects.all()
-        context = {'companies': companies}
+        context = {'companies': companies, "profile":profile, "sensex":sensex}
         return render(request, self.template, context)
 
     def post(self, request, *args, **kwargs):
@@ -97,10 +101,12 @@ class Buy(View):
         bidShares = int(request.POST["quantity"])
         bidPrice = int(request.POST["price"])
         profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+        sensex = Global.objects.filter(pk=1).first().sensex
         match(company, profile, bidPrice, bidShares, True)
 
         companies = Company.objects.all()
-        context = {'companies': companies, "message": "We have received your bid! We will process it soon! Thank you"}
+        context = {'companies': companies, "message": "We have received your bid! We will process it soon! Thank you",
+                   "profile":profile, "sensex":sensex}
         return render(request, self.template, context)
 
 
@@ -111,11 +117,13 @@ class Sell(View):
     def get(self, request):
         companies = []
         user = User.objects.get(username=request.user)
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+        sensex = Global.objects.filter(pk=1).first().sensex
         userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
         for entry in userShares:
             if entry.company not in companies:
                 companies.append(entry.company)
-        context = {'companies': companies}
+        context = {'companies': companies, "profile":profile, "sensex":sensex}
         return render(request, self.template, context)
 
     def post(self, request):
@@ -123,6 +131,7 @@ class Sell(View):
         bidShares = int(request.POST["quantity"])
         bidPrice = int(request.POST["price"])
         profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+        sensex = Global.objects.filter(pk=1).first().sensex
 
         match(company, profile, bidPrice, bidShares, False)
 
@@ -132,26 +141,37 @@ class Sell(View):
         for entry in userShares:
             if entry.company not in companies:
                 companies.append(entry.company)
-        context = {'companies': companies, 'message': "We have received your bid! We will process it soon! Thank you"}
+        context = {'companies': companies, 'message': "We have received your bid! We will process it soon! Thank you",
+                   "profile":profile, "sensex":sensex}
         return render(request, self.template, context)
 
 
-class News(View):
+class NewsView(View):
     template = 'bazaar/news.html'
 
     def get(self, request):
-        return render(request, self.template, {})
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+        sensex = Global.objects.filter(pk=1).first().sensex
+        news = News.objects.all()
+        context = {"profile": profile, "sensex": sensex, "news":news[::-1]}
+        return render(request, self.template, context)
 
 
 class Transactions(View):
     template = 'bazaar/transactions.html'
 
     def get(self, request):
-        return render(request, self.template, {})
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+        sensex = Global.objects.filter(pk=1).first().sensex
+        context = {"profile": profile, "sensex": sensex}
+        return render(request, self.template, context)
 
 
 class LeaderBoardView(View):
     template = 'bazaar/leaderboard.html'
 
     def get(self, request):
-        return render(request, self.template, {})
+        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+        sensex = Global.objects.filter(pk=1).first().sensex
+        context = {"profile": profile, "sensex": sensex}
+        return render(request, self.template, context)

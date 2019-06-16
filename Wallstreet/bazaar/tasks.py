@@ -83,7 +83,7 @@ def emptyBuyTableSellTableTask():
                 # Matching entries as long as possible
                 if company.sharesLeft:
                     # if company has shares to sell
-                    if not sorted_sellTable:
+                    if not (j < len(sorted_sellTable)):
                         # If sorted_sellTable is empty check for company
                         if sorted_buyTable[i].bidPrice >= company.sharePrice:
                             # Buy Request is greater than comapany current price
@@ -95,7 +95,7 @@ def emptyBuyTableSellTableTask():
                     # sell shares of company
                     elif (j < len(sorted_sellTable)) and company.sharePrice < sorted_sellTable[j].bidPrice and sorted_buyTable[
                         i].bidPrice >= company.sharePrice:
-                        # User Match with sorted_buyTable[i] with company shares ( company shares is least priced )
+                        # User Match with sorted_buyTable[i] with company shares (company shares is least priced)
                         flag = userCompanyTrasaction(company, buyTable,
                                                      sorted_buyTable[i])
                         # Perform transaction for company and buying user
