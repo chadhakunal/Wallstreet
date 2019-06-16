@@ -92,33 +92,6 @@
 
       </div>
 
-      <!--div id="sidebar" class="sidebar py-3">
-        <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
-        <ul class="sidebar-menu list-unstyled">
-              <li class="sidebar-list-item"><a href="index.html" class="sidebar-link text-muted"><i class="o-home-1 mr-3 text-gray"></i><span>Home</span></a></li>
-              <li class="sidebar-list-item"><a href="charts.html" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Charts</span></a></li>
-              <li class="sidebar-list-item"><a href="tables.html" class="sidebar-link text-muted active"><i class="o-table-content-1 mr-3 text-gray"></i><span>Tables</span></a></li>
-              <li class="sidebar-list-item"><a href="forms.html" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>Forms</span></a></li>
-          <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>Pages</span></a>
-            <div id="pages" class="collapse">
-              <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
-                <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Page one</a></li>
-                <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Page two</a></li>
-                <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Page three</a></li>
-                <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Page four</a></li>
-              </ul>
-            </div>
-          </li>
-              <li class="sidebar-list-item"><a href="login.html" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>Login</span></a></li>
-        </ul>
-        <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">EXTRAS</div>
-        <ul class="sidebar-menu list-unstyled">
-              <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-database-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-              <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-imac-screen-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-              <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-paperwork-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-              <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-        </ul>
-      </div-->
       <div class="page-holder w-100 d-flex flex-wrap">
         <div class="container-fluid px-xl-5">
           <section class="py-5">
@@ -126,9 +99,9 @@
               <div class="col-lg-12 mb-4">
                 <div class="card">
                   <div class="card-header">
-                    <h6 class="text-uppercase mb-0">Transactions</h6>
+                    <h6 class="text-uppercase mb-0">Completed Transactions</h6>
                   </div>
-                  <div class="card-body">
+                  <div class="card-body table-responsive">
                     <table class="table table-striped table-hover card-text">
                       <thead>
                         <tr>
@@ -136,34 +109,21 @@
                           <th>Buy/Sell</th>
                           <th>Number of shares</th>
                           <th>Share Price</th>
-                          
                         </tr>
                       </thead>
                       <tbody>
+                      {% for transaction in completed_transactions %}
                         <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
+                            <th scope="row">{{ transaction.company }}</th>
+                            {% if transaction.buysell %}
+                            <td>Buy</td>
+                            {% else %}
+                            <td>Sell</td>
+                            {% endif %}
+                            <td>{{ transaction.bidShares }}</td>
+                            <td>{{ transaction.bidPrice }}</td>
                         </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter                            </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Sam</td>
-                          <td>Nevoresky</td>
-                          <td>@facebook                            </td>
-                        </tr>
+                      {% endfor %}
                       </tbody>
                     </table>
                   </div>
@@ -173,6 +133,52 @@
             </div>
           </section>
         </div>
+
+        <div class="container-fluid px-xl-5">
+          <section class="py-5">
+            <div class="row">
+              <div class="col-lg-12 mb-4">
+                <div class="card">
+                  <div class="card-header">
+                    <h6 class="text-uppercase mb-0">Completed Transactions</h6>
+                  </div>
+                  <div class="card-body table-responsive">
+                    <table class="table table-striped table-hover card-text">
+                      <thead>
+                        <tr>
+                          <th>Company</th>
+                          <th>Buy/Sell</th>
+                          <th>Number of shares</th>
+                          <th>Share Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for transaction in pending_buy_transactions %}
+                        <tr>
+                            <th>{{ transaction.company }}</th>
+                            <td>Buy</td>
+                            <td>{{ transaction.bidShares }}</td>
+                            <td>{{ transaction.bidPrice }}</td>
+                        </tr>
+                        {% endfor %}
+                        {% for transaction in pending_sell_transactions %}
+                        <tr>
+                            <th>{{ transaction.company }}</th>
+                            <td>Sell</td>
+                            <td>{{ transaction.bidShares }}</td>
+                            <td>{{ transaction.bidPrice }}</td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+        </div>
+
         <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
           <div class="container-fluid">
             <div class="row">
@@ -200,3 +206,5 @@
     <script src="{% static 'bazaar/vendor/chart.js/Chart.min.js'%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="{% static 'bazaar/js/front.js'%}"></script>
+
+  </body>

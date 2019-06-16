@@ -87,6 +87,7 @@ class Global(models.Model):
             MinValueValidator(1)
         ])
     registrationKey = models.CharField(max_length=20, default="abcde")
+    startStopMarket = models.BooleanField(default=True)    # True => start, False => Stop
 
 
 class LeaderBoard(models.Model):

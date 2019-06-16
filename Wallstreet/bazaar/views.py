@@ -3,12 +3,15 @@ from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from datetime import datetime
 
 from .models import *
 from .matchUtilities import *
 
 
 # Create your views here.
+startStopMarket = Global.objects.get(pk=1).startStopMarket
+# startStopMarket = True
 
 class Register(View):
     template = 'bazaar/register.html'
@@ -87,64 +90,80 @@ class CompanyView(View):
 
 class Buy(View):
     template = 'bazaar/buy.html'
+    error = 'bazaar/marketclose.html'
     context = {}
 
     # ToDo: Add validations in frontend
     def get(self, request):
-        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
-        sensex = Global.objects.filter(pk=1).first().sensex
-        companies = Company.objects.all()
-        context = {'companies': companies, "profile":profile, "sensex":sensex}
-        return render(request, self.template, context)
+        if startStopMarket:
+            profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+            sensex = Global.objects.filter(pk=1).first().sensex
+            companies = Company.objects.all()
+            context = {'companies': companies, "profile":profile, "sensex":sensex}
+            return render(request, self.template, context)
+        else:
+            return render(request, self.error)
 
     def post(self, request, *args, **kwargs):
-        company = Company.objects.get(name=request.POST["companyName"])
-        bidShares = int(request.POST["quantity"])
-        bidPrice = int(request.POST["price"])
-        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
-        sensex = Global.objects.filter(pk=1).first().sensex
-        match(company, profile, bidPrice, bidShares, True)
+        if startStopMarket:
+            companyName = request.POST["companyName"].split(' -')[0]
+            company = Company.objects.get(name=companyName)
+            bidShares = int(request.POST["quantity"])
+            bidPrice = int(request.POST["price"])
+            profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+            sensex = Global.objects.filter(pk=1).first().sensex
+            match(company, profile, bidPrice, bidShares, True)
 
-        companies = Company.objects.all()
-        context = {'companies': companies, "message": "We have received your bid! We will process it soon! Thank you",
-                   "profile":profile, "sensex":sensex}
-        return render(request, self.template, context)
+            companies = Company.objects.all()
+            context = {'companies': companies, "message": "We have received your bid! We will process it soon! Thank you",
+                       "profile":profile, "sensex":sensex}
+            return render(request, self.template, context)
+        else:
+            return render(request, self.error)
 
 
 class Sell(View):
     template = 'bazaar/sell.html'
+    error = 'bazaar/marketclose.html'
 
     # ToDo: Add validations in frontend
     def get(self, request):
-        companies = []
-        user = User.objects.get(username=request.user)
-        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
-        sensex = Global.objects.filter(pk=1).first().sensex
-        userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
-        for entry in userShares:
-            if entry.company not in companies:
-                companies.append(entry.company)
-        context = {'companies': companies, "profile":profile, "sensex":sensex}
-        return render(request, self.template, context)
+        if startStopMarket:
+            companies = []
+            user = User.objects.get(username=request.user)
+            profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+            sensex = Global.objects.filter(pk=1).first().sensex
+            userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
+            for entry in userShares:
+                if entry.company not in companies:
+                    companies.append(entry.company)
+            context = {'companies': companies, "profile":profile, "sensex":sensex}
+            return render(request, self.template, context)
+        else:
+            return render(request, self.error)
 
     def post(self, request):
-        company = Company.objects.get(name=request.POST["companyName"])
-        bidShares = int(request.POST["quantity"])
-        bidPrice = int(request.POST["price"])
-        profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
-        sensex = Global.objects.filter(pk=1).first().sensex
+        if startStopMarket:
+            companyName = request.POST["companyName"].split(' -')[0]
+            company = Company.objects.get(companyName)
+            bidShares = int(request.POST["quantity"])
+            bidPrice = int(request.POST["price"])
+            profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
+            sensex = Global.objects.filter(pk=1).first().sensex
 
-        match(company, profile, bidPrice, bidShares, False)
+            match(company, profile, bidPrice, bidShares, False)
 
-        companies = []
-        user = User.objects.get(username=request.user)
-        userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
-        for entry in userShares:
-            if entry.company not in companies:
-                companies.append(entry.company)
-        context = {'companies': companies, 'message': "We have received your bid! We will process it soon! Thank you",
-                   "profile":profile, "sensex":sensex}
-        return render(request, self.template, context)
+            companies = []
+            user = User.objects.get(username=request.user)
+            userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
+            for entry in userShares:
+                if entry.company not in companies:
+                    companies.append(entry.company)
+            context = {'companies': companies, 'message': "We have received your bid! We will process it soon! Thank you",
+                       "profile":profile, "sensex":sensex}
+            return render(request, self.template, context)
+        else:
+            return render(request, self.error)
 
 
 class NewsView(View):
@@ -158,13 +177,38 @@ class NewsView(View):
         return render(request, self.template, context)
 
 
+def getPendingTransactions(profile):
+    pending_buy_transactions = []
+    pending_sell_transactions = []
+    for company in Company.objects.all():
+        exec("global buyTable; buyTable = BuyTable_" + company.tempName)
+        exec("global sellTable; sellTable = SellTable_" + company.tempName)
+        for buy_transaction in buyTable.objects.filter(profile=profile):
+            pending_buy_transactions.append({
+                'company': Company.objects.get(pk=buy_transaction.company),
+                'bidShares': buy_transaction.bidShares,
+                'bidPrice': buy_transaction.bidPrice
+            })
+        for sell_transaction in sellTable.objects.filter(profile=profile):
+            pending_sell_transactions.append({
+                'company': Company.objects.get(pk=sell_transaction.company),
+                'bidShares': sell_transaction.bidShares,
+                'bidPrice': sell_transaction.bidPrice
+            })
+    return pending_buy_transactions, pending_sell_transactions
+
+
 class Transactions(View):
     template = 'bazaar/transactions.html'
 
     def get(self, request):
         profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
         sensex = Global.objects.filter(pk=1).first().sensex
-        context = {"profile": profile, "sensex": sensex}
+        completed_transactions = UserHistory.objects.filter(profile=profile)
+        pending_buy_transactions, pending_sell_transactions = getPendingTransactions(profile)
+        context = {"profile": profile, "sensex": sensex, "completed_transactions": completed_transactions,
+                   "pending_buy_transactions": pending_buy_transactions,
+                   "pending_sell_transactions": pending_sell_transactions}
         return render(request, self.template, context)
 
 
@@ -175,5 +219,6 @@ class LeaderBoardView(View):
         profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
         sensex = Global.objects.filter(pk=1).first().sensex
         leaderboard = LeaderBoard.objects.all()
-        context = {"profile": profile, "sensex": sensex, "leaderboard": leaderboard}
+        update_time = datetime.now()
+        context = {"profile": profile, "sensex": sensex, "leaderboard": leaderboard, "update_time": update_time}
         return render(request, self.template, context)

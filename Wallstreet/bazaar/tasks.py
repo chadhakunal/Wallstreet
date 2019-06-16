@@ -1,10 +1,10 @@
 from __future__ import absolute_import, unicode_literals
 from celery import task
 from .models import *
-from django.utils.crypto import get_random_string
 
 from .matchUtilities import *
 from datetime import datetime
+import pandas as pd
 
 
 # pip install eventlet
@@ -17,10 +17,22 @@ from datetime import datetime
 # Add tasks in settings
 
 
+news = pd.read_csv('news.csv')
+
+
 @task()
 def addNews():
     # ToDo: retrieve news from CSV file
-    News.objects.create(title=get_random_string(10), description=get_random_string(50))
+    global news
+    if not news.empty:
+        new_news = news.iloc[:, 0]
+        title = new_news.title
+        description = new_news.description
+        news = news.drop([0], axis=0)
+        print(title, description)
+        News.objects.create(title=title, description=description)
+    else:
+        return
 
 
 @task()
