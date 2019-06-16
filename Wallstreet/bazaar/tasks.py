@@ -52,12 +52,17 @@ def LeaderBoardUpdateTask():
     g.LeaderBoardUpdateTime = datetime.now()  # Set the latest leaderboard update time
     g.save()
 
-    sorted_profiles = Profile.objects.all().order_by('-netWorth')[
-                      :numberOfEntries]  # Sort profiles according to netWorth
+    sorted_profiles = Profile.objects.all().order_by('-netWorth')
 
     LeaderBoard.objects.all().delete()  # Empty leader board
 
-    for p in sorted_profiles:
+    for index, p in enumerate(sorted_profiles):
+        # Updating ranks of all users
+        profile = Profile.objects.get(profile=p)
+        profile.rank = index + 1
+        profile.save()
+
+    for p in sorted_profiles[:numberOfEntries]:
         # Add Entries to leader board
         LeaderBoard.objects.create(profile=p)
 

@@ -175,9 +175,5 @@ class LeaderBoardView(View):
         profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
         sensex = Global.objects.filter(pk=1).first().sensex
         leaderboard = LeaderBoard.objects.all()
-        for leaderboardentry in leaderboard:
-            print(leaderboardentry.profile.user.username)
-            print(leaderboardentry.profile.cash)
-            print(leaderboardentry.profile.rank)
         context = {"profile": profile, "sensex": sensex, "leaderboard": leaderboard}
         return render(request, self.template, context)
