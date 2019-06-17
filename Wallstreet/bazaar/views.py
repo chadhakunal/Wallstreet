@@ -115,9 +115,9 @@ class Buy(View):
             profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
             sensex = Global.objects.filter(pk=1).first().sensex
             match(company, profile, bidPrice, bidShares, True)
-
+            bidRange = Global.objects.filter(pk=1).first().bidRangePercent
             companies = Company.objects.all()
-            context = {'companies': companies,
+            context = {'companies': companies, "bidRange": bidRange,
                        "message": "We have received your bid! We will process it soon! Thank you",
                        "profile": profile, "sensex": sensex}
             return render(request, self.template, context)
@@ -150,13 +150,13 @@ class Sell(View):
             bidPrice = int(request.POST["price"])
             profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
             sensex = Global.objects.filter(pk=1).first().sensex
-
+            bidRange = Global.objects.filter(pk=1).first().bidRangePercent
             match(company, profile, bidPrice, bidShares, False)
 
             user = User.objects.get(username=request.user)
             userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
             print(userShares[0].company)
-            context = {'userShares': userShares,
+            context = {'userShares': userShares, "bidRange": bidRange,
                        'message': "We have received your bid! We will process it soon! Thank you",
                        "profile": profile, "sensex": sensex}
             return render(request, self.template, context)

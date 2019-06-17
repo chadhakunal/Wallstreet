@@ -1,6 +1,8 @@
 document.getElementById("submitButton").onclick = function(){
-
     selectString = document.getElementById("share").value
+    bidRange = parseInt(document.getElementById("bidRange").innerHTML)
+    bidRange = bidRange / 100
+
     currentPrice = ""
     sharesLeft = ""
     for(let i = selectString.length - 1;selectString[i]!=".";i--){
@@ -16,7 +18,7 @@ document.getElementById("submitButton").onclick = function(){
     bidPrice = parseInt(document.getElementById("bidPrice").value)
     quantity = parseInt(document.getElementById("quantity").value)
 
-    if(isNaN(bidPrice) || isNaN(quantity) || bidPrice<=0 || quantity<=0 || quantity>sharesLeft || bidPrice<0.9*currentPrice || bidPrice>1.1*currentPrice){
+    if(isNaN(bidPrice) || isNaN(quantity) || bidPrice<=0 || quantity<=0 || quantity>sharesLeft || bidPrice<(1-bidRange)*currentPrice || bidPrice>(1+bidRange)*currentPrice){
         document.getElementById("validation").style = "color:red"
     }
     else{
