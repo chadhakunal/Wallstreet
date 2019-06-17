@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from datetime import datetime
+from django.http import JsonResponse
+import json
 
 from .models import *
 from .matchUtilities import *
@@ -114,8 +116,8 @@ class Buy(View):
             bidPrice = int(request.POST["price"])
             profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
             sensex = Global.objects.filter(pk=1).first().sensex
-            match(company, profile, bidPrice, bidShares, True)
             bidRange = Global.objects.filter(pk=1).first().bidRangePercent
+            match.delay(company, profile, bidPrice, bidShares, True)
             companies = Company.objects.all()
             context = {'companies': companies, "bidRange": bidRange,
                        "message": "We have received your bid! We will process it soon! Thank you",
@@ -151,7 +153,7 @@ class Sell(View):
             profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
             sensex = Global.objects.filter(pk=1).first().sensex
             bidRange = Global.objects.filter(pk=1).first().bidRangePercent
-            match(company, profile, bidPrice, bidShares, False)
+            match.delay(company, profile, bidPrice, bidShares, False)
 
             user = User.objects.get(username=request.user)
             userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())

@@ -73,14 +73,14 @@ WSGI_APPLICATION = 'Wallstreet.wsgi.application'
 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['pickle']
+CELERY_RESULT_SERIALIZER = 'pickle'
+CELERY_TASK_SERIALIZER = 'pickle'
 CELERY_TIMEZONE = 'Asia/Kolkata'
 CELERY_BEAT_SCHEDULE = {
     'task-news': {
         'task': 'bazaar.tasks.addNews',
-        'schedule': 20,
+        'schedule': 900,
     },
     'task-leaderboard': {
         'task': 'bazaar.tasks.LeaderBoardUpdateTask',

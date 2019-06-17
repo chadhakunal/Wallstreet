@@ -1,4 +1,4 @@
-from bazaar.models import *
+from .models import *
 
 def setPointers(n):
     #n is the mnumber of bids for each company
@@ -22,3 +22,10 @@ def setCompanyTempName():
         i.save()
 
     print("Temp Name Set!")
+
+
+def resetCash():
+    from bazaar.models import Profile
+    for p in Profile.objects.all():
+        p.cash = 380000
+        p.save()

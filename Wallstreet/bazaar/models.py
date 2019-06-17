@@ -75,6 +75,7 @@ class News(models.Model):
     description = models.CharField(max_length=200)
     time = models.DateTimeField(default=datetime.now)
 
+
 class Global(models.Model):
     # Global Table
     sensex = models.FloatField(default=0)
@@ -83,11 +84,12 @@ class Global(models.Model):
     LeaderboardSize = models.IntegerField(default=100)
     LeaderBoardUpdateTime = models.DateTimeField(default=datetime.now)
     bidRangePercent = models.IntegerField(default=10, validators=[
-            MaxValueValidator(100),
-            MinValueValidator(1)
-        ])
+        MaxValueValidator(100),
+        MinValueValidator(1)
+    ])
     registrationKey = models.CharField(max_length=20, default="abcde")
-    startStopMarket = models.BooleanField(default=True)    # True => start, False => Stop
+    startStopMarket = models.BooleanField(default=True)  # True => start, False => Stop
+    NewsCounter = models.IntegerField(default=0)
 
 
 class LeaderBoard(models.Model):
