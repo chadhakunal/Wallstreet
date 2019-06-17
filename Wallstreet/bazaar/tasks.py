@@ -15,17 +15,17 @@ import pandas as pd
 
 # Add tasks in settings
 
-# ToDo: User bidshares validation
-# ToDo: Send cut and range to template
-# ToDo: Hide validations
+### ToDo: User bidshares validation
+### ToDo: Send range to template
+### ToDo: Hide validations
 # ToDo: add spread and sensex
-# ToDO: add matchUtilities as a celery task
+### ToDO: add matchUtilities as a celery task
 # ToDO: add 'spread' task
-# ToDo: news upload only when market starts
+### ToDo: news upload only when market starts
 # ToDo: Documentation
 # ToDo: WebSockets
 # ToDo: AWS hosting
-# ToDo: Testing: Cash,NetWorth,News,Leaderboard,matchUtilities in Celery,Buy/Sell Matching
+# ToDo: Testing: Cash,NetWorth,News,Leaderboard,matchUtilities in Celery,Buy/Sell Matching,emptyBuySellTable
 
 news = pd.read_csv('news.csv')
 
@@ -33,16 +33,20 @@ news = pd.read_csv('news.csv')
 @task()
 def addNews():
     # ToDo: retrieve news from CSV file
-    global news
-    if not news.empty:
-        new_news = news.iloc[:, 0]
-        title = new_news.title
-        description = new_news.description
-        news = news.drop([0], axis=0)
-        print(title, description)
-        News.objects.create(title=title, description=description)
-    else:
-        return
+
+    g = Global.objects.get(pk=1)
+    if g.startStopMarket:
+        global news
+        if g.NewsCounter < news.shape[0]:
+            new_news = news.iloc[g.NewsCounter, :]
+            title = new_news.title
+            description = new_news.description
+            g.NewsCounter += 1
+            g.save()
+            print(title, description)
+            News.objects.create(title=title, description=description)
+        else:
+            return
 
 
 @task()
@@ -63,7 +67,7 @@ def LeaderBoardUpdateTask():
         shareValuation = 0
         shareTableEntries = UserShareTable.objects.filter(profile=p)  # Get all user shares
         for entry in shareTableEntries:
-            shareValuation += companyStockPrices[entry.company] * entry.bidShares
+            shareValuation += companyStockPrices[entry.company.name] * entry.bidShares
 
         p.netWorth = (cashValuationPercent * p.cash) + (
                 shareValuationPercent * shareValuation)  # Calculate net worth of user
@@ -80,7 +84,7 @@ def LeaderBoardUpdateTask():
 
     for index, p in enumerate(sorted_profiles):
         # Updating ranks of all users
-        profile = Profile.objects.get(profile=p)
+        profile = Profile.objects.get(pk=p.pk)
         profile.rank = index + 1
         profile.save()
 
