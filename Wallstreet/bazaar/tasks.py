@@ -15,13 +15,13 @@ import pandas as pd
 
 # Add tasks in settings
 
-# ToDo: User bidshares validation
+### ToDo: User bidshares validation
 # ToDo: Send cut and range to template
-# ToDo: Hide validations
+### ToDo: Hide validations
 # ToDo: add spread and sensex
-# ToDO: add matchUtilities as a celery task
+### ToDO: add matchUtilities as a celery task
 # ToDO: add 'spread' task
-# ToDo: news upload only when market starts
+# ToDo: news upload only when market starts #
 # ToDo: Documentation
 # ToDo: WebSockets
 # ToDo: AWS hosting

@@ -137,10 +137,7 @@ class Sell(View):
             profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
             sensex = Global.objects.filter(pk=1).first().sensex
             userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
-            for entry in userShares:
-                if entry.company not in companies:
-                    companies.append(entry.company)
-            context = {'companies': companies, "profile": profile, "sensex": sensex}
+            context = {'userShares': userShares, "profile": profile, "sensex": sensex}
             return render(request, self.template, context)
         else:
             return render(request, self.error)
@@ -156,13 +153,10 @@ class Sell(View):
 
             match(company, profile, bidPrice, bidShares, False)
 
-            companies = []
             user = User.objects.get(username=request.user)
             userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
-            for entry in userShares:
-                if entry.company not in companies:
-                    companies.append(entry.company)
-            context = {'companies': companies,
+            print(userShares[0].company)
+            context = {'userShares': userShares,
                        'message': "We have received your bid! We will process it soon! Thank you",
                        "profile": profile, "sensex": sensex}
             return render(request, self.template, context)

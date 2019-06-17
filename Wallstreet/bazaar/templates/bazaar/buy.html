@@ -117,7 +117,7 @@
                               <label class="form-control-label text-uppercase">Company</label>
                               <select id="company" name="companyName" class="form-control" style="width: 100%" form="buyForm">
                                 {% for company in companies %}
-                                <option style="color: black">{{ company.name }} :   Rs.{{ company.sharePrice }}</option>
+                                <option style="color: black">{{ company.name }} :   Rs.{{ company.sharePrice }}  -  {{ company.totalNoOfShares }} total shares</p></option>
                                 {% endfor %}
                               </select>
                             </div>
@@ -164,33 +164,6 @@
       </div>
     </div>
 
-    <script>
-      document.getElementById("submitButton").onclick = function(){
-        selectString = document.getElementById("company").value
-        currentPrice = ""
-        for(let i = selectString.length - 1;selectString[i]!=".";i--){
-          currentPrice = selectString[i]+currentPrice
-        }
-        currentPrice = parseInt(currentPrice)
-        bidPrice = parseInt(document.getElementById("bidPrice").value)
-        quantity = parseInt(document.getElementById("quantity").value)
-        cash = parseInt(document.getElementById("cash").innerHTML)
-        
-        if(isNaN(bidPrice) || isNaN(quantity) || bidPrice<=0 || quantity<=0 || bidPrice<0.9*currentPrice || bidPrice>1.1*currentPrice){
-          document.getElementById("validation").style = "color:red"
-          document.getElementById("cashValidation").style = "display:none"
-        }
-        else if(cash<=0 || cash<=(quantity*bidPrice*1.1)){
-          document.getElementById("cashValidation").style = "color:red"
-          document.getElementById("validation").style = "display:none"
-        }
-        else{
-          document.getElementById("submitForm").click()
-        }
-        
-        
-      }
-    </script>
     
     <!-- JavaScript files-->
     <script src="{% static 'bazaar/vendor/jquery/jquery.min.js'%}"></script>
@@ -201,5 +174,6 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="{% static 'bazaar/js/charts-custom.js'%}"></script>
     <script src="{% static 'bazaar/js/front.js'%}"></script>
+    <script src="{% static 'bazaar/js/buy_validation.js' %}"></script>
   </body>
 </html>

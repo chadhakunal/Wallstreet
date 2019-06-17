@@ -111,9 +111,9 @@
 
                             <div class="select">
                               <label class="form-control-label text-uppercase">Company</label>
-                              <select id="company" name="companyName" class="form-control" style="width: 100%" form="sellForm">
-                                {% for company in companies %}
-                                <option>{{ company.name }} :   Rs.{{ company.sharePrice }}</option>
+                              <select  id="share" name="shareName" class="form-control" style="width: 100%" form="sellForm">
+                                {% for share in userShares %}
+                                <option>{{ share.company.name }} :   Rs.{{ share.company.sharePrice }}  -  {{ share.bidShares }} Shares Available</option>
                                 {% endfor %}
                               </select>
                             </div>
@@ -131,6 +131,7 @@
                         <button id="submitForm" style="display:none" type="submit" class="btn btn-primary"></button>
                       </div>
                     </form>
+
                     <button id="submitButton" class="btn btn-primary">Submit</button>
                   </div>
                 </div>
@@ -157,28 +158,6 @@
       </div>
     </div>
 
-    <script>
-      document.getElementById("submitButton").onclick = function(){
-        selectString = document.getElementById("company").value
-        currentPrice = ""
-        for(let i = selectString.length - 1;selectString[i]!=".";i--){
-          currentPrice = selectString[i]+currentPrice
-        }
-        currentPrice = parseInt(currentPrice)
-        bidPrice = parseInt(document.getElementById("bidPrice").value)
-        quantity = parseInt(document.getElementById("quantity").value)
-        
-        if(isNaN(bidPrice) || isNaN(quantity) || bidPrice<=0 || quantity<=0 || bidPrice<0.9*currentPrice || bidPrice>1.1*currentPrice){
-          document.getElementById("validation").style = "color:red"
-        }
-        else{
-          document.getElementById("submitForm").click()
-        }
-        
-        
-      }
-    </script>
-
     <!-- JavaScript files-->
     <script src="{% static 'bazaar/vendor/jquery/jquery.min.js'%}"></script>
     <script src="{% static 'bazaar/vendor/popper.js/umd/popper.min.js'%}"> </script>
@@ -188,5 +167,6 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="{% static 'bazaar/js/charts-custom.js'%}"></script>
     <script src="{% static 'bazaar/js/front.js'%}"></script>
+  <script src="{%static 'bazaar/js/sell_validation.js'%}"></script>
   </body>
 </html>
