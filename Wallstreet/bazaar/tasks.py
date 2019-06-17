@@ -16,13 +16,16 @@ import pandas as pd
 # Add tasks in settings
 
 # ToDo: User bidshares validation
+# ToDo: Send cut and range to template
 # ToDo: Hide validations
 # ToDo: add spread and sensex
-# ToDO: add matchUtilities as a task
+# ToDO: add matchUtilities as a celery task
 # ToDO: add 'spread' task
 # ToDo: news upload only when market starts
 # ToDo: Documentation
 # ToDo: WebSockets
+# ToDo: AWS hosting
+# ToDo: Testing: Cash,NetWorth,News,Leaderboard,matchUtilities in Celery,Buy/Sell Matching
 
 news = pd.read_csv('news.csv')
 
