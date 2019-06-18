@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from celery.schedules import crontab
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -89,6 +90,10 @@ CELERY_BEAT_SCHEDULE = {
     'task-emptyTables': {
         'task': 'bazaar.tasks.emptyBuyTableSellTableTask',
         'schedule': 1800,
+    },
+    'task-distributeSpread': {
+        'task': 'bazaar.tasks.spreadTask',
+        'schedule': crontab(minute=59, hour=23),
     },
 }
 

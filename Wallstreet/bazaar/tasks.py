@@ -18,14 +18,16 @@ import pandas as pd
 ### ToDo: User bidshares validation
 ### ToDo: Send range to template
 ### ToDo: Hide validations
-# ToDo: add spread and sensex
+### ToDo: add spread
+# ToDo: add sensex
 ### ToDO: add matchUtilities as a celery task
-# ToDO: add 'spread' task
+### ToDO: add 'spread' task
 ### ToDo: news upload only when market starts
+# ToDo: Testing: Cash,NetWorth,Spread,Sensex,News,Leaderboard,matchUtilities in Celery,Buy/Sell Matching,emptyBuySellTable
 # ToDo: Documentation
 # ToDo: WebSockets
 # ToDo: AWS hosting
-# ToDo: Testing: Cash,NetWorth,News,Leaderboard,matchUtilities in Celery,Buy/Sell Matching,emptyBuySellTable
+
 
 news = pd.read_csv('news.csv')
 
@@ -163,3 +165,22 @@ def emptyBuyTableSellTableTask():
                 userRevoke(sorted_sellTable[i], False)
                 sellTable.objects.get(pk=sorted_sellTable[i].pk).delete()
             j += 1
+
+
+@task()
+def spreadTask():
+    profiles = {}
+    totalTransaction = 0
+    for p in Profile.objects.all():
+        profiles[p] = 0
+
+    for u in UserHistory.objects.all():
+        value = u.bidShares * u.bidPrice
+        totalTransaction += value
+
+        profiles[u.profile] += value
+
+    for p in Profile.objects.all():
+        spreadRatio = profiles[p]/totalTransaction
+        p.cash += (spreadRatio*totalTransaction)
+        p.save()
