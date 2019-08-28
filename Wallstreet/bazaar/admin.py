@@ -13,9 +13,11 @@ admin.site.register(News)
 admin.site.register(Global)
 admin.site.register(LeaderBoard)
 
-
-for i in Company.objects.all():
-    exec("""
+try:
+    for i in Company.objects.all():
+        exec("""
 admin.site.register(BuyTable_""" + i.tempName.replace(" ", "_") + """)
 admin.site.register(SellTable_""" + i.tempName.replace(" ", "_") + """)
-    """)
+        """)
+except:
+    print("Buy Tables and Sell Tables Not Created")

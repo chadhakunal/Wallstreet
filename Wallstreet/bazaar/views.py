@@ -103,7 +103,8 @@ class Buy(View):
             profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
             sensex = Global.objects.filter(pk=1).first().sensex
             companies = Company.objects.all()
-            context = {'companies': companies, "profile": profile, "sensex": sensex}
+            bidRange = Global.objects.filter(pk=1).first().bidRangePercent
+            context = {'companies': companies, "profile": profile, "sensex": sensex,"bidRange": bidRange}
             return render(request, self.template, context)
         else:
             return render(request, self.error)
@@ -117,6 +118,7 @@ class Buy(View):
             profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
             sensex = Global.objects.filter(pk=1).first().sensex
             bidRange = Global.objects.filter(pk=1).first().bidRangePercent
+            moneyAlter(profile, bidPrice * bidShares, False)  # Subtract money for user
             match.delay(company, profile, bidPrice, bidShares, True)
             companies = Company.objects.all()
             context = {'companies': companies, "bidRange": bidRange,
@@ -139,7 +141,8 @@ class Sell(View):
             profile = Profile.objects.filter(user=User.objects.get(username=request.user)).first()
             sensex = Global.objects.filter(pk=1).first().sensex
             userShares = UserShareTable.objects.filter(profile=Profile.objects.filter(user=user).first())
-            context = {'userShares': userShares, "profile": profile, "sensex": sensex}
+            bidRange = Global.objects.filter(pk=1).first().bidRangePercent
+            context = {'userShares': userShares, "profile": profile, "sensex": sensex, "bidRange": bidRange}
             return render(request, self.template, context)
         else:
             return render(request, self.error)

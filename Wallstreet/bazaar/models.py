@@ -9,6 +9,23 @@ from datetime import datetime
 
 # Create your models here.
 
+class Global(models.Model):
+    # Global Table
+    sensex = models.FloatField(default=0)
+    spread = models.IntegerField(default=0)
+    LiveText = models.CharField(max_length=100)
+    LeaderboardSize = models.IntegerField(default=100)
+    LeaderBoardUpdateTime = models.DateTimeField(default=datetime.now)
+    bidRangePercent = models.IntegerField(default=10, validators=[
+        MaxValueValidator(100),
+        MinValueValidator(1)
+    ])
+    registrationKey = models.CharField(max_length=20, default="abcde")
+    startStopMarket = models.BooleanField(default=True)  # True => start, False => Stop
+    startNews = models.BooleanField(default=False)
+    NewsCounter = models.IntegerField(default=0)
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)  # Extending User Model
     rank = models.IntegerField(default=-1)  # Rank of the user
@@ -76,28 +93,13 @@ class News(models.Model):
     time = models.DateTimeField(default=datetime.now)
 
 
-class Global(models.Model):
-    # Global Table
-    sensex = models.FloatField(default=0)
-    spread = models.IntegerField(default=0)
-    LiveText = models.CharField(max_length=100)
-    LeaderboardSize = models.IntegerField(default=100)
-    LeaderBoardUpdateTime = models.DateTimeField(default=datetime.now)
-    bidRangePercent = models.IntegerField(default=10, validators=[
-        MaxValueValidator(100),
-        MinValueValidator(1)
-    ])
-    registrationKey = models.CharField(max_length=20, default="abcde")
-    startStopMarket = models.BooleanField(default=True)  # True => start, False => Stop
-    NewsCounter = models.IntegerField(default=0)
-
-
 class LeaderBoard(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
 
-for i in Company.objects.all():
-    exec("""
+try:
+    for i in Company.objects.all():
+        exec("""
 class BuyTable_""" + i.tempName + """(models.Model):
     # Table to store buy requests
     company = models.IntegerField(default=""" + str(i.pk) + """)  # Company
@@ -113,5 +115,7 @@ class SellTable_""" + i.tempName + """(models.Model):
     bidPrice = models.IntegerField(default=0)  # Sell Price
     bidShares = models.IntegerField(default=0)  # Number of shares
     transactionTime = models.DateTimeField(default=datetime.now)  # Transaction Time
-
-    """)
+    
+        """)
+except Exception as e:
+    print("Partial MakeMigrations! Please Run migrate and then makemigrations Again")

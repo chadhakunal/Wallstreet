@@ -113,7 +113,7 @@
 
                             <div class="select">
                               <label class="form-control-label text-uppercase">Company</label>
-                              <select  id="share" name="shareName" class="form-control" style="width: 100%" form="sellForm">
+                              <select  id="share" name="companyName" class="form-control" style="width: 100%" form="sellForm">
                                 {% for share in userShares %}
                                 <option>{{ share.company.name }} :   Rs.{{ share.company.sharePrice }}  -  {{ share.bidShares }} Shares Available</option>
                                 {% endfor %}

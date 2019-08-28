@@ -1,78 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="146e891e-7e26-4af1-b6d1-53af262a759b" name="Default Changelist" comment="" />
+    <list default="true" id="146e891e-7e26-4af1-b6d1-53af262a759b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wallstreet/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wallstreet/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/bazaar/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/matchUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/bazaar/matchUtilities.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/bazaar/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0002_auto_20190220_1643.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0003_auto_20190220_1742.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0004_auto_20190224_0618.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0005_auto_20190610_1321.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0006_remove_company_tabletype.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0007_testmodel.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0008_buytable0_buytable1_buytable2_buytable3_buytable4_buytable5_buytable6_buytable7_buytable8_buytable9.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0009_auto_20190611_1536.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0010_company_tempname.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0011_buytable_acc_buytable_ambuja_cement_buytable_apollo_buytable_avenue_supermarkets_buytable_axis_bank_.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0012_buytable_companytemp1_selltable_companytemp1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0013_auto_20190611_1556.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0014_auto_20190611_1614.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0015_buytable_companytemp1_selltable_companytemp1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0016_auto_20190611_1618.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0017_auto_20190613_1244.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0018_buytable_acc_buytable_ambujacement_buytable_apollo_buytable_avenuesupermarkets_buytable_axisbank_buy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0019_auto_20190613_1324.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0020_auto_20190613_1351.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0021_auto_20190613_1428.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0022_auto_20190613_1446.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0023_auto_20190613_1448.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0024_auto_20190613_1503.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0025_remove_profile_numberofcompanies.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0026_remove_usersharetable_bidprice.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0027_remove_news_company.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0028_global_leaderboardsize.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0029_global_leaderboardupdatetime.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0030_global_bidrangepercent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0031_auto_20190614_1832.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0032_global_registrationkey.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0033_global_startstopmarket.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0034_news_time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/migrations/0035_global_newscounter.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bazaar/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/static/bazaar/js/buy_validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/bazaar/static/bazaar/js/buy_validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/static/bazaar/js/sell_validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/bazaar/static/bazaar/js/sell_validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/templates/bazaar/sell.html" beforeDir="false" afterPath="$PROJECT_DIR$/bazaar/templates/bazaar/sell.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/templates/bazaar/transactions.html" beforeDir="false" afterPath="$PROJECT_DIR$/bazaar/templates/bazaar/transactions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/utility.py" beforeDir="false" afterPath="$PROJECT_DIR$/bazaar/utility.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazaar/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bazaar/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/celerybeat-schedule.bak" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/celerybeat-schedule.dat" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/celerybeat-schedule.dir" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.dir" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dump.rdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="1103145018">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="2" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.14" value="1" />
-          <entry key="project.open.time.18" value="1" />
-          <entry key="project.open.time.22" value="1" />
-          <entry key="project.opened" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="html" value="80" />
-          <entry key="py" value="4453" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="HTML" value="80" />
-          <entry key="Python" value="4453" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="html" value="1" />
-          <entry key="py" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="HTML" value="1" />
-          <entry key="Python" value="4" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bazaar/matchUtilities.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-              <folding>
-                <marker date="1560421033080" expanded="true" signature="57:59" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bazaar/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="38" column="72" selection-start-line="38" selection-start-column="72" selection-end-line="38" selection-end-column="72" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -82,74 +69,14 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>entryTime = models.DateTimeField(default=datetime.now, blank=True)</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Wallstreet/urls.py" />
-        <option value="$PROJECT_DIR$/Wallstreet/settings.py" />
-        <option value="$PROJECT_DIR$/bazaar/insertUtilities.py" />
-        <option value="$PROJECT_DIR$/bazaar/templates/bazaar/test.html" />
-        <option value="$PROJECT_DIR$/bazaar/views.py" />
-        <option value="$PROJECT_DIR$/bazaar/urls.py" />
-        <option value="$PROJECT_DIR$/bazaar/utility.py" />
-        <option value="$PROJECT_DIR$/bazaar/admin.py" />
-        <option value="$PROJECT_DIR$/bazaar/models.py" />
-        <option value="$PROJECT_DIR$/bazaar/matchUtilities.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="65" />
-    <option name="y" value="20" />
-    <option name="width" value="1855" />
-    <option name="height" value="1060" />
-  </component>
+  <component name="ProjectId" id="1PuD6AoskGPwKM2kezpyqf6tD9L" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Wallstreet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Wallstreet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Wallstreet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Wallstreet" type="462c0819:PsiDirectoryNode" />
-              <item name="bazaar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Wallstreet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Wallstreet" type="462c0819:PsiDirectoryNode" />
-              <item name="bazaar" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Wallstreet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Wallstreet" type="462c0819:PsiDirectoryNode" />
-              <item name="Wallstreet" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -220,119 +147,17 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49795082" visible="true" weight="0.18389262" />
-      <window_info id="Structure" order="1" sideWeight="0.5020492" side_tool="true" weight="0.16845638" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49932885" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32907802" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32907802" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4986577" visible="true" weight="0.28085107" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5013423" side_tool="true" weight="0.30780143" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="right" id="R Packages" order="4" />
-    </layout>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/updateData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bazaar/templates/bazaar/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Wallstreet/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Wallstreet/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bazaar/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bazaar/utility.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bazaar/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bazaar/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bazaar/insertUtilities.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="1661" lean-forward="true" selection-start-line="1661" selection-end-line="1661" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bazaar/matchUtilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          <folding>
-            <marker date="1560421033080" expanded="true" signature="57:59" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bazaar/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="38" column="72" selection-start-line="38" selection-start-column="72" selection-end-line="38" selection-end-column="72" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

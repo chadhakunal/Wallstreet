@@ -1,4 +1,4 @@
-document.getElementById("submitButton").onclick = function(){
+document.getElementById("buyForm").onsubmit = function(){
     selectString = document.getElementById("company").value
     bidRange = parseInt(document.getElementById("bidRange").innerHTML)
     bidRange = bidRange / 100

@@ -118,7 +118,7 @@
                       {% for transaction in completed_transactions %}
                         <tr>
                             <th scope="row">{{ transaction.company }}</th>
-                            {% if transaction.buysell %}
+                            {% if transaction.buySell %}
                             <td>Buy</td>
                             {% else %}
                             <td>Sell</td>
