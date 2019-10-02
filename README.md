@@ -1,5 +1,7 @@
 # Wallstreet
 
+<div style="align: center;" ><img src="Demo/sample.png" width=250 height=200 /></div>
+
 Wallstreet is a stock market simulator, where the players get an opportunity to earn truckloads of virtual money. All that the players have to do is, follow
 the news, select the stock and wait for the price to skyrocket. On the flip side, they learn how to recover losses from stocks that have tanked.
 
