@@ -45,4 +45,4 @@ Manav Peshwani <a href="https://www.linkedin.com/in/manav-peshwani-37041216a/"><
 ### You want to contribute ?
 1. Fork the repo
 2. Make the changes, add features
-3. Send the pull request ):
+3. Send a pull request ):
