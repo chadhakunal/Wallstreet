@@ -23,11 +23,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <!-- Google fonts - Popppins for copy-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
-    
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-
 
     <style type="text/css">
 
@@ -201,12 +196,6 @@
           <section class="py-5">
             <div class="row mb-4 d-flex align-items-center">
                <div class="col-lg-5 mb-4 mb-lg-0 pl-lg-0">
-
-               
-
-
-
-
               </div>
               <div class="col-lg-12 mb-4 mb-lg-0">
                 <div class="card">
@@ -289,9 +278,6 @@
           <section>
             <p style="display: none" id="companiesData">{{companies}}</p>
             <div class="row">
-              
-
-
               <div class="col-lg-12 ml-2 mr-2 mb-3" id="sectionMyShares">
                 <div class="card mb-5 mb-lg-0">
                   <div class="card-header">
@@ -317,7 +303,6 @@
                       </table>
                       <p id="length" style="display: none">{{companies.count}}</p>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -360,10 +345,8 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </section>
-
         </div>
         <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
           <div class="container-fluid">
