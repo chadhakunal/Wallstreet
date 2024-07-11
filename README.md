@@ -10,9 +10,6 @@ out into the street to make some real money!
 
 This platform has been tested in a technical festival of PICT and can handle 1000+ players flawlessly.
 
-Also Remember:
-> When it is a question of money, everyone is of same religion.
-
 ## Rules
 1. Each participant will be provided with a unique Login ID and Password to log on the Wallstreet website and start playing.
 2. Any buy bid or sell ask can be made within a margin of ±10% of the current share price. For ex, if the current market price of a share is Rs.100/-, a buy or sell bid can be made from any range between Rs. 90/- Rs. 110/-
